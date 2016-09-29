@@ -12,7 +12,7 @@ namespace SuperShopManagement.Models
         public string ProductDescription { get; set; }
         public int ProductQty { get; set; }
         public double ProductBuyPrice { get; set; }
-        public double ProductSellPrice { get; set; }
+        public double ProductSalePrice { get; set; }
         public int CatagoryId { get; set; }
 
     }
