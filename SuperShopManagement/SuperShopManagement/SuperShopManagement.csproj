@@ -81,7 +81,9 @@
     <Content Include="UI\report.aspx" />
     <Content Include="UI\sell.aspx" />
     <Content Include="UI\view.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AdminManager.cs" />
