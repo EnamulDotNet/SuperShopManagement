@@ -39,7 +39,7 @@ namespace SuperShopManagement.UI
                 }
                 catagoryDropdown.Items.Insert(0, new ListItem("--Select Catagory--", "0"));
             }
-
+           
         }
 
         protected void saveButton_Click(object sender, EventArgs e)
@@ -66,6 +66,23 @@ namespace SuperShopManagement.UI
                 saveProductLabel.Text = "Save Fail";
             }
 
+            ClearForms(Page.Controls);
+
+        }
+        void ClearForms(ControlCollection ctrls)
+        {
+            foreach (Control ctrl in ctrls)
+            {
+                var box = ctrl as TextBox;
+                if (box != null)
+                    box.Text = string.Empty;
+                else
+                {
+                    (ctrl as DropDownList)?.ClearSelection();
+                }
+
+                ClearForms(ctrl.Controls);
+            }
         }
     }
 }
