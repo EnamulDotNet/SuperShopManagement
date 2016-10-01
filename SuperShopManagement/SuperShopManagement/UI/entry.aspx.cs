@@ -66,22 +66,50 @@ namespace SuperShopManagement.UI
                 saveProductLabel.Text = "Save Fail";
             }
 
-            ClearForms(Page.Controls);
-
+            
+            ClearAllControls();
         }
-        void ClearForms(ControlCollection ctrls)
+      
+        protected void ClearAllControls()
         {
-            foreach (Control ctrl in ctrls)
+            //Loop through all the control present on the web page/form        
+            foreach (Control ctrl in form1.Controls)
             {
-                var box = ctrl as TextBox;
-                if (box != null)
-                    box.Text = string.Empty;
-                else
+                //check for all the TextBox controls on the page and clear them
+                if (ctrl.GetType() == typeof(TextBox))
                 {
-                    (ctrl as DropDownList)?.ClearSelection();
+                    ((TextBox)(ctrl)).Text = string.Empty;
                 }
-
-                ClearForms(ctrl.Controls);
+                //check for all the Label controls on the page and clear them
+                //else if (ctrl.GetType() == typeof(Label))
+                //{
+                //    ((Label)(ctrl)).Text = string.Empty;
+                //}
+                //check for all the DropDownList controls on the page and reset it to the very first item e.g. "-- Select One --"
+                else if (ctrl.GetType() == typeof(DropDownList))
+                {
+                    ((DropDownList)(ctrl)).SelectedIndex = 0;
+                }
+                //check for all the CheckBox controls on the page and unchecked the selection
+                else if (ctrl.GetType() == typeof(CheckBox))
+                {
+                    ((CheckBox)(ctrl)).Checked = false;
+                }
+                //check for all the CheckBoxList controls on the page and unchecked all the selections
+                else if (ctrl.GetType() == typeof(CheckBoxList))
+                {
+                    ((CheckBoxList)(ctrl)).ClearSelection();
+                }
+                //check for all the RadioButton controls on the page and unchecked the selection
+                else if (ctrl.GetType() == typeof(RadioButton))
+                {
+                    ((RadioButton)(ctrl)).Checked = false;
+                }
+                //check for all the RadioButtonList controls on the page and unchecked the selection
+                else if (ctrl.GetType() == typeof(RadioButtonList))
+                {
+                    ((RadioButtonList)(ctrl)).ClearSelection();
+                }
             }
         }
     }
