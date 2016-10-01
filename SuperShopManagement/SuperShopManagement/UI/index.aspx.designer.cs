@@ -31,13 +31,13 @@ namespace SuperShopManagement.UI {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// NameTextBox control.
+        /// userNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox userNameTextBox;
         
         /// <summary>
         /// Label2 control.
@@ -49,13 +49,13 @@ namespace SuperShopManagement.UI {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// PasswordTextBox control.
+        /// passwordTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
+        protected global::System.Web.UI.WebControls.TextBox passwordTextBox;
         
         /// <summary>
         /// LoginButton control.
@@ -65,5 +65,14 @@ namespace SuperShopManagement.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button LoginButton;
+        
+        /// <summary>
+        /// loginStatusLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label loginStatusLabel;
     }
 }

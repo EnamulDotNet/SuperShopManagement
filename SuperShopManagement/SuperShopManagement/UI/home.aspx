@@ -30,6 +30,16 @@
                     <a href="report.aspx">Sell Report</a>
                 </td>
             </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                
+                <td>
+                    <asp:Button ID="logoutButton" runat="server" Text="Log Out" OnClick="logoutButton_Click" />
+                </td>
+            </tr>
         </table>
     
     </div>
