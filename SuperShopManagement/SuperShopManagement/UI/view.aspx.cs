@@ -40,10 +40,10 @@ namespace SuperShopManagement.UI
                 e.Row.Cells[0].Text = "Sl.No.";
                 e.Row.Cells[1].Text = "Name";
                 e.Row.Cells[2].Text = "Description";
-                e.Row.Cells[3].Text = "Quantity";
-                e.Row.Cells[4].Text = "Buy Price";
-                e.Row.Cells[5].Text = "Sell Price";
-                e.Row.Cells[6].Text = "Catagory";
+                e.Row.Cells[3].Text = "Catagory"; 
+                e.Row.Cells[4].Text = "Quantity";
+                e.Row.Cells[5].Text = "Buy Price";
+                e.Row.Cells[6].Text = "Sell Price"; 
             }
         }
     }

@@ -33,8 +33,9 @@ namespace SuperShopManagement.DAL
         public object Show()
         {
 
-          
-            SqlCommand cmd = new SqlCommand("select * from Product", connection);
+
+            //SqlCommand cmd = new SqlCommand("select * from Product", connection);
+            SqlCommand cmd=new SqlCommand("SELECT Product.ProductId,Product.ProductName,Product.ProductDescription,Catagory.CatagoryName,Product.ProductQty,Product.ProductBuyPrice, Product.ProductSellPrice FROM Product INNER JOIN Catagory ON Product.CatagoryId = Catagory.CatagoryId",connection);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
