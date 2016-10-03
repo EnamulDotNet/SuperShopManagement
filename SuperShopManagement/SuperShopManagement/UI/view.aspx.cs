@@ -16,15 +16,7 @@ namespace SuperShopManagement.UI
         {
             ProductManager productManager=new ProductManager();
             productGridView.DataSource= productManager.ShowProduct();
-            //SqlConnection con=new SqlConnection("Server=PACERS-9; Database=SuperShopDb; Integrated Security=true");
-            //SqlCommand cmd=new SqlCommand("select * from Product",con);
-            //SqlDataAdapter da=new SqlDataAdapter(cmd);
-            //DataSet ds=new DataSet();
-            //da.Fill(ds);
-            //con.Open();
-            //cmd.ExecuteNonQuery();
-            //con.Close();
-            //productGridView.DataSource=ds;
+           
             productGridView.DataBind();
         }
 
