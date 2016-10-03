@@ -29,5 +29,20 @@ namespace SuperShopManagement.DAL
 
             return false;
         }
+
+        public object Show()
+        {
+
+          
+            SqlCommand cmd = new SqlCommand("select * from Product", connection);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            return ds;
+
+        }
     }
 }

@@ -66,7 +66,10 @@ namespace SuperShopManagement.UI
                 saveProductLabel.Text = "Save Fail";
             }
 
-            
+
+
+
+
             ClearAllControls();
         }
       
