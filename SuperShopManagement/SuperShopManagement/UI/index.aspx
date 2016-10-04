@@ -31,7 +31,7 @@
                 <td>
                     
                 </td>
-                <td align="right">
+                <td align="right"> 
                     <asp:Button ID="LoginButton" runat="server" Text="Log In" OnClick="LoginButton_Click"/>
                 </td>
             </tr>
