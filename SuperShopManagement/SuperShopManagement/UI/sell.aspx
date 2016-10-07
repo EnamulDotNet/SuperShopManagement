@@ -45,22 +45,20 @@
 <body>
     <form id="form1" runat="server">
     <div>
+
     <asp:TextBox ID="txtSearch" runat="server" />
 <asp:HiddenField ID="ProductId" runat="server" />
-<asp:Button ID="Button1" Text="Submit" runat="server" OnClick="Submit" />
+        <asp:TextBox ID="qtyTextBox" runat="server" />
+<asp:Button ID="Button1" Text="Add" runat="server" OnClick="Submit" />
         
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
-            <AlternatingRowStyle BackColor="White" />
-            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-            <SortedAscendingCellStyle BackColor="#FDF5AC" />
-            <SortedAscendingHeaderStyle BackColor="#4D0000" />
-            <SortedDescendingCellStyle BackColor="#FCF6C0" />
-            <SortedDescendingHeaderStyle BackColor="#820000" />
-        </asp:GridView>
+        <asp:GridView ID="GridView1" runat="server" CssClass="Grid" AutoGenerateColumns="false"
+EmptyDataText="No records has been added.">
+<Columns>
+    <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="120" />
+    <asp:BoundField DataField="ProductQty" HeaderText="Product Quantity" ItemStyle-Width="120" />
+</Columns>
+</asp:GridView>
+
     </div>
     </form>
 </body>

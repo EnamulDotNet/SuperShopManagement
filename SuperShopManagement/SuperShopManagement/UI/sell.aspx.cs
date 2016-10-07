@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,12 +14,32 @@ namespace SuperShopManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!this.IsPostBack)
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.AddRange(new DataColumn[2] { new DataColumn("ProductName"), new DataColumn("ProductQty") });
+                ViewState["Customers"] = dt;
+                this.BindGrid();
+            }
+        }
+        protected void BindGrid()
+        {
+            GridView1.DataSource = (DataTable)ViewState["Customers"];
+            GridView1.DataBind();
+        }
+        protected void Insert(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["Customers"];
+            dt.Rows.Add(txtSearch.Text.Trim(), qtyTextBox.Text.Trim());
+            ViewState["Customers"] = dt;
+            this.BindGrid();
+            txtSearch.Text = string.Empty;
+            qtyTextBox.Text = string.Empty;
         }
         [WebMethod]
         public static string[] GetProductNames(string prefix)
         {
-            List<string> customers = new List<string>();
+            List<string> products = new List<string>();
             using (SqlConnection conn = new SqlConnection())
             {
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ConnectionString;
@@ -32,16 +53,22 @@ namespace SuperShopManagement.UI
                     {
                         while (sdr.Read())
                         {
-                            customers.Add(string.Format("{0}-{1}", sdr["ProductName"], sdr["ProductId"]));
+                            products.Add(string.Format("{0}-{1}", sdr["ProductName"], sdr["ProductId"]));
                         }
                     }
                     conn.Close();
                 }
             }
-            return customers.ToArray();
+            return products.ToArray();
         }
         protected void Submit(object sender, EventArgs e)
         {
+            DataTable dt = (DataTable)ViewState["Customers"];
+            dt.Rows.Add(txtSearch.Text.Trim(), qtyTextBox.Text.Trim());
+            ViewState["Customers"] = dt;
+            this.BindGrid();
+            txtSearch.Text = string.Empty;
+            qtyTextBox.Text = string.Empty;
             string productName = Request.Form[txtSearch.UniqueID];
             string productId = Request.Form[ProductId.UniqueID];
             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
