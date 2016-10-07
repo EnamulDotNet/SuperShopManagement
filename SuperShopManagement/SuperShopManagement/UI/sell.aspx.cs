@@ -18,24 +18,16 @@ namespace SuperShopManagement.UI
             {
                 DataTable dt = new DataTable();
                 dt.Columns.AddRange(new DataColumn[2] { new DataColumn("ProductName"), new DataColumn("ProductQty") });
-                ViewState["Customers"] = dt;
+                ViewState["Products"] = dt;
                 this.BindGrid();
             }
         }
         protected void BindGrid()
         {
-            GridView1.DataSource = (DataTable)ViewState["Customers"];
+            GridView1.DataSource = (DataTable)ViewState["Products"];
             GridView1.DataBind();
         }
-        protected void Insert(object sender, EventArgs e)
-        {
-            DataTable dt = (DataTable)ViewState["Customers"];
-            dt.Rows.Add(txtSearch.Text.Trim(), qtyTextBox.Text.Trim());
-            ViewState["Customers"] = dt;
-            this.BindGrid();
-            txtSearch.Text = string.Empty;
-            qtyTextBox.Text = string.Empty;
-        }
+       
         [WebMethod]
         public static string[] GetProductNames(string prefix)
         {
@@ -63,15 +55,15 @@ namespace SuperShopManagement.UI
         }
         protected void Submit(object sender, EventArgs e)
         {
-            DataTable dt = (DataTable)ViewState["Customers"];
+            DataTable dt = (DataTable)ViewState["Products"];
             dt.Rows.Add(txtSearch.Text.Trim(), qtyTextBox.Text.Trim());
-            ViewState["Customers"] = dt;
+            ViewState["Products"] = dt;
             this.BindGrid();
             txtSearch.Text = string.Empty;
             qtyTextBox.Text = string.Empty;
             string productName = Request.Form[txtSearch.UniqueID];
             string productId = Request.Form[ProductId.UniqueID];
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
+           // ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
         }
     }
 }
