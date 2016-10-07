@@ -9,15 +9,15 @@
 <body>
     <form id="form1" runat="server">
     <div>
-       <asp:GridView ID="gv1" runat="server" AutoGenerateColumns ="False"
+       <asp:GridView ID="gv1" runat="server" AutoGenerateColumns ="False" AllowCustomPaging="True"
             onrowdatabound="gv1_RowDataBound" onrowdeleting="gv1_RowDeleting"
             onrowediting="gv1_RowEditing" DataKeyNames="ProductId" ShowFooter="True"
             onrowcommand="gv1_RowCommand" onrowupdating="gv1_RowUpdating"
-            BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px"
-            CellPadding="3" GridLines="None" CellSpacing="1"
-            onrowcancelingedit="gv1_RowCancelingEdit" >
+            CellPadding="4" GridLines="None"
+            onrowcancelingedit="gv1_RowCancelingEdit" ForeColor="#333333" >
+           <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns >
-        <asp:TemplateField HeaderText="ProductId">
+        <asp:TemplateField HeaderText="Sl. No." ItemStyle-HorizontalAlign="Center">
  
         <ItemTemplate>
         <%# Eval("ProductId") %>
@@ -28,9 +28,11 @@
             <FooterTemplate >
                 <asp:LinkButton ID="lnkinsert" runat="server" Text= "Insert" CommandName="Insert" ></asp:LinkButton>
             </FooterTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Product Name">
+            <asp:TemplateField HeaderText="Product Name" ItemStyle-HorizontalAlign="Center">
             <ItemTemplate>
             <%#Eval("ProductName") %>
             </ItemTemplate>
@@ -40,9 +42,11 @@
             <FooterTemplate >
                 <asp:TextBox ID="txtaddProductName" runat="server"></asp:TextBox>
             </FooterTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Product Description">
+            <asp:TemplateField HeaderText="Product Description" ItemStyle-HorizontalAlign="Center">
             <ItemTemplate>
             <%#Eval("ProductDescription") %>
             </ItemTemplate>
@@ -52,9 +56,11 @@
             <FooterTemplate >
                 <asp:TextBox ID="txtaddProductDescription" runat="server"></asp:TextBox>
             </FooterTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Catagory">
+            <asp:TemplateField HeaderText="Catagory" ItemStyle-HorizontalAlign="Center">
             <ItemTemplate>
             <%#Eval("CatagoryName") %>
             </ItemTemplate>
@@ -66,9 +72,11 @@
                 <asp:DropDownList ID="ddladdCatagory" runat="server" Width="150px">
                 </asp:DropDownList>
             </FooterTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Product Qty">
+            <asp:TemplateField HeaderText="Product Qty" ItemStyle-HorizontalAlign="Center">
             <ItemTemplate>
             <%#Eval("ProductQty") %>
             </ItemTemplate>
@@ -78,10 +86,12 @@
             <FooterTemplate >
                 <asp:TextBox ID="txtaddProductQty" runat="server"></asp:TextBox>
             </FooterTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             
             
-            <asp:TemplateField HeaderText="Product Buy Price">
+            <asp:TemplateField HeaderText="Product Buy Price" ItemStyle-HorizontalAlign="Center">
             <ItemTemplate>
             <%#Eval("ProductBuyPrice") %>
             </ItemTemplate>
@@ -91,9 +101,11 @@
             <FooterTemplate >
                 <asp:TextBox ID="txtaddProductBuyPrice" runat="server"></asp:TextBox>
             </FooterTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Product Sell Price">
+            <asp:TemplateField HeaderText="Product Sell Price" ItemStyle-HorizontalAlign="Center">
             <ItemTemplate>
             <%#Eval("ProductSellPrice") %>
             </ItemTemplate>
@@ -103,6 +115,8 @@
             <FooterTemplate >
                 <asp:TextBox ID="txtaddProductSellPrice" runat="server"></asp:TextBox>
             </FooterTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
 
             <asp:CommandField ShowEditButton ="true" ControlStyle-ForeColor ="Blue " >
@@ -115,15 +129,17 @@
             </asp:TemplateField>
             </Columns>
  
-            <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-            <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
-            <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
-            <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
-            <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-            <SortedAscendingHeaderStyle BackColor="#594B9C" />
-            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-            <SortedDescendingHeaderStyle BackColor="#33276A" />
+            <EditRowStyle BackColor="#999999" />
+ 
+            <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
  
         </asp:GridView>
     </div>
