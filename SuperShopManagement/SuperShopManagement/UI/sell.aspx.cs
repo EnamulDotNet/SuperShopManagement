@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Web.Services;
+using System.Configuration;
+using System.Data.SqlClient;
 namespace SuperShopManagement.UI
 {
     public partial class sell : System.Web.UI.Page
@@ -12,6 +14,37 @@ namespace SuperShopManagement.UI
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+        [WebMethod]
+        public static string[] GetProductNames(string prefix)
+        {
+            List<string> customers = new List<string>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ConnectionString;
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "select ProductName, ProductId from Product where ProductName like @SearchText + '%'";
+                    cmd.Parameters.AddWithValue("@SearchText", prefix);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(string.Format("{0}-{1}", sdr["ProductName"], sdr["ProductId"]));
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return customers.ToArray();
+        }
+        protected void Submit(object sender, EventArgs e)
+        {
+            string productName = Request.Form[txtSearch.UniqueID];
+            string productId = Request.Form[ProductId.UniqueID];
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
         }
     }
 }
