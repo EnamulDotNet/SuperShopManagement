@@ -34,6 +34,17 @@
             </td>
         </tr>
     </table>
+        <div>
+           <asp:GridView ID="GridView1" runat="server" CssClass="Grid" AutoGenerateColumns="false"
+EmptyDataText="No records has been added.">
+<Columns>
+    <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="120" />
+    <asp:BoundField DataField="ProductQty" HeaderText="Product Quantity" ItemStyle-Width="120" />
+    <asp:BoundField DataField="ProductSellAmount" HeaderText="Product Sell Amount" ItemStyle-Width="120" />
+
+</Columns>
+</asp:GridView>
+        </div>
     </div>
     </form>
 </body>
