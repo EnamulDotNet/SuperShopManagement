@@ -120,6 +120,7 @@ EmptyDataText="No records has been added.">
     <asp:BoundField DataField="ProductPrice" HeaderText="Product Price" ItemStyle-Width="120" />
     <asp:BoundField DataField="ProductQty" HeaderText="Product Quantity" ItemStyle-Width="120" />
     <asp:BoundField DataField="ProductTotalPrice" HeaderText="Product Total Price" ItemStyle-Width="120" />
+    <asp:BoundField DataField="ProductStockQty" HeaderText="Product Stock Quantity" ItemStyle-Width="120" />
 
 </Columns>
 </asp:GridView>

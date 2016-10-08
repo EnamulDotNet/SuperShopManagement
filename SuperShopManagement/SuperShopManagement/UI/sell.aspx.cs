@@ -17,15 +17,17 @@ namespace SuperShopManagement.UI
             if (!this.IsPostBack)
             {
                 DataTable dt = new DataTable();
-                dt.Columns.AddRange(new DataColumn[5] { new DataColumn("ProductId"), new DataColumn("ProductName"), new DataColumn("ProductPrice"), new DataColumn("ProductQty"), new DataColumn("ProductTotalPrice") });
+                dt.Columns.AddRange(new DataColumn[6] { new DataColumn("ProductId"), new DataColumn("ProductName"), new DataColumn("ProductPrice"), new DataColumn("ProductQty"), new DataColumn("ProductTotalPrice"), new DataColumn("ProductStockQty") });
                 ViewState["Products"] = dt;
                 this.BindGrid();
             }
         }
         protected void BindGrid()
         {
+            GridView1.Columns[5].Visible = true;
             GridView1.DataSource = (DataTable)ViewState["Products"];
             GridView1.DataBind();
+            GridView1.Columns[5].Visible = false;
         }
         protected void Insert(object sender, EventArgs e)
         {
@@ -42,7 +44,8 @@ namespace SuperShopManagement.UI
                 }
             }
             double totalPrice = Convert.ToInt32(productSellQtyTextBox.Text) * Convert.ToDouble(productPriceTextBox.Text);
-            dt.Rows.Add(productIdTextBox.Text.Trim(),searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(),productSellQtyTextBox.Text.Trim(), totalPrice);
+            int stockremain = Convert.ToInt32(productQtyTextBox.Text) - Convert.ToInt32(productSellQtyTextBox.Text); 
+            dt.Rows.Add(productIdTextBox.Text.Trim(),searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(),productSellQtyTextBox.Text.Trim(), totalPrice.ToString(), stockremain.ToString());
             ViewState["Products"] = dt;
             this.BindGrid();
             
@@ -104,15 +107,18 @@ namespace SuperShopManagement.UI
         {
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
+                
                 int productSellqty = int.Parse(GridView1.Rows[i].Cells[3].Text);
+                int productRemainQty=int.Parse(GridView1.Rows[i].Cells[5].Text);
                 DateTime sellDate = DateTime.Now;
                 int productId = int.Parse(GridView1.Rows[i].Cells[0].Text);
                 string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
                 SqlConnection conn = new SqlConnection(sqlconn);
                 SqlCommand cmd = new SqlCommand("INSERT INTO ProductSale VALUES('"+productSellqty+"','"+sellDate+"','"+productId+"')", conn);
-
+                SqlCommand cmdupdate = new SqlCommand("UPDATE Product SET ProductQty='" + productRemainQty + "' WHERE ProductId='" + productId + "' ", conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
+                cmdupdate.ExecuteNonQuery();
                 conn.Close();
             }
             
