@@ -109,6 +109,8 @@
                 </td>
             </tr>
         </table>
+        <table>
+            
         
         <asp:GridView ID="GridView1" runat="server" CssClass="Grid" AutoGenerateColumns="false"
 EmptyDataText="No records has been added.">
@@ -121,7 +123,8 @@ EmptyDataText="No records has been added.">
 
 </Columns>
 </asp:GridView>
-
+            <asp:Button ID="sellButton" runat="server" Text="Sell" /> 
+</table>
 
        
 
