@@ -123,7 +123,7 @@ EmptyDataText="No records has been added.">
 
 </Columns>
 </asp:GridView>
-            <asp:Button ID="sellButton" runat="server" Text="Sell" /> 
+            <asp:Button ID="sellButton" runat="server" Text="Sell" OnClick="sellButton_Click" /> 
 </table>
 
        

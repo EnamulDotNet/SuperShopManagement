@@ -100,8 +100,24 @@ namespace SuperShopManagement.UI
 
         }
 
-        
+        protected void sellButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                int productSellqty = int.Parse(GridView1.Rows[i].Cells[3].Text);
+                DateTime sellDate = DateTime.Now;
+                int productId = int.Parse(GridView1.Rows[i].Cells[0].Text);
+                string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
+                SqlConnection conn = new SqlConnection(sqlconn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO ProductSale VALUES('"+productSellqty+"','"+sellDate+"','"+productId+"')", conn);
 
-       
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            
+
+
+        }
     }
 }
