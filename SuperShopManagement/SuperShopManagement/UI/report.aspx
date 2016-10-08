@@ -9,7 +9,31 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    Report page 
+    <table>
+        <tr>
+            <td>
+                From date:
+            </td>
+            <td>
+                <asp:TextBox ID="fromDateTextBox" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                To Date:
+            </td>
+            <td>
+                <asp:TextBox ID="toDateTextBox" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                <asp:Button ID="showReportButton" runat="server" Text="Show Report" /> 
+            </td>
+        </tr>
+    </table>
     </div>
     </form>
 </body>
