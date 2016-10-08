@@ -17,17 +17,37 @@ namespace SuperShopManagement.UI
             if (!this.IsPostBack)
             {
                 DataTable dt = new DataTable();
-                dt.Columns.AddRange(new DataColumn[2] { new DataColumn("ProductName"), new DataColumn("ProductQty") });
-                ViewState["Products"] = dt;
+                dt.Columns.AddRange(new DataColumn[5] { new DataColumn("ProductId"), new DataColumn("ProductName"), new DataColumn("ProductPrice"), new DataColumn("ProductQty"), new DataColumn("ProductTotalPrice") });
+                ViewState["Customers"] = dt;
                 this.BindGrid();
             }
         }
         protected void BindGrid()
         {
-            GridView1.DataSource = (DataTable)ViewState["Products"];
+            GridView1.DataSource = (DataTable)ViewState["Customers"];
             GridView1.DataBind();
         }
-       
+        protected void Insert(object sender, EventArgs e)
+        {
+
+
+            DataTable dt = (DataTable)ViewState["Customers"];
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                string id = GridView1.Rows[i].Cells[0].Text;
+                if (id==productIdTextBox.Text.Trim())
+                {
+                    dt.Rows[i].Delete();
+                    break;
+                }
+            }
+            double totalPrice = Convert.ToInt32(productSellQtyTextBox.Text) * Convert.ToDouble(productPriceTextBox.Text);
+            dt.Rows.Add(productIdTextBox.Text.Trim(),searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(),productSellQtyTextBox.Text.Trim(), totalPrice);
+            ViewState["Customers"] = dt;
+            this.BindGrid();
+            
+        }
+
         [WebMethod]
         public static string[] GetProductNames(string prefix)
         {
@@ -53,17 +73,35 @@ namespace SuperShopManagement.UI
             }
             return products.ToArray();
         }
+        string productSellPrice = "";
         protected void Submit(object sender, EventArgs e)
         {
-            DataTable dt = (DataTable)ViewState["Products"];
-            dt.Rows.Add(txtSearch.Text.Trim(), qtyTextBox.Text.Trim());
-            ViewState["Products"] = dt;
-            this.BindGrid();
-            txtSearch.Text = string.Empty;
-            qtyTextBox.Text = string.Empty;
-            string productName = Request.Form[txtSearch.UniqueID];
+            //searchTextBox.Text = string.Empty;
+            //string productName = Request.Form[searchTextBox.UniqueID];
             string productId = Request.Form[ProductId.UniqueID];
-           // ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
+            string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
+            SqlConnection conn = new SqlConnection(sqlconn);
+            SqlCommand cmd = new SqlCommand("SELECT ProductQty,ProductSellPrice FROM Product where ProductId='"+productId+"'", conn);
+            SqlDataReader reader = null;
+            conn.Open();
+            reader = cmd.ExecuteReader();
+            string productQty="";
+            
+            while (reader.Read())
+            {
+                 productQty= reader["ProductQty"].ToString();
+                 productSellPrice = reader["ProductSellPrice"].ToString();
+            }
+            conn.Close();
+            productIdTextBox.Text = productId;
+            productQtyTextBox.Text = productQty;
+            productPriceTextBox.Text = productSellPrice;
+
         }
+
+        
+
+       
     }
 }

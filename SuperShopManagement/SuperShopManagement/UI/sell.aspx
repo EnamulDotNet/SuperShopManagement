@@ -10,7 +10,7 @@
     <link href="../SearchAutoComplete/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript">
     $(function () {
-        $("[id$=txtSearch]").autocomplete({
+        $("[id$=searchTextBox]").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: '<%=ResolveUrl("sell.aspx/GetProductNames") %>',
@@ -46,18 +46,84 @@
     <form id="form1" runat="server">
     <div>
 
-    <asp:TextBox ID="txtSearch" runat="server" />
-<asp:HiddenField ID="ProductId" runat="server" />
-        <asp:TextBox ID="qtyTextBox" runat="server" />
-<asp:Button ID="Button1" Text="Add" runat="server" OnClick="Submit" />
+  
+        
+
+        
+        <table>
+            <tr>
+                <td>
+                    Product Name:
+                </td>
+                <td>
+                    <asp:TextBox ID="searchTextBox" runat="server" />
+                    <asp:HiddenField ID="ProductId" runat="server" />
+                </td>
+                <td align="right">
+                    <asp:Button ID="searchButton" Text="Search" runat="server" OnClick="Submit" />
+                </td>
+                </tr>
+                
+                
+            
+            <tr>
+                <td>
+                    Product Id:
+                </td>
+                <td>
+                    <asp:TextBox ID="productIdTextBox" runat="server" ReadOnly="True"></asp:TextBox>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Product Quantity:
+                </td>
+                <td>
+                    <asp:TextBox ID="productQtyTextBox" runat="server" ReadOnly="True"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Product Price:
+                </td>
+                <td>
+                    <asp:TextBox ID="productPriceTextBox" runat="server" ReadOnly="True"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Product Sell Qty:
+                </td>
+                <td>
+                    <asp:TextBox ID="productSellQtyTextBox" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    
+                </td>
+                <td align="right">
+                    <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="Insert" />
+                </td>
+            </tr>
+        </table>
         
         <asp:GridView ID="GridView1" runat="server" CssClass="Grid" AutoGenerateColumns="false"
 EmptyDataText="No records has been added.">
 <Columns>
+    <asp:BoundField DataField="ProductId" HeaderText="Product Id" ItemStyle-Width="120" />
     <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="120" />
+    <asp:BoundField DataField="ProductPrice" HeaderText="Product Price" ItemStyle-Width="120" />
     <asp:BoundField DataField="ProductQty" HeaderText="Product Quantity" ItemStyle-Width="120" />
+    <asp:BoundField DataField="ProductTotalPrice" HeaderText="Product Total Price" ItemStyle-Width="120" />
+
 </Columns>
 </asp:GridView>
+
+
+       
 
     </div>
     </form>
