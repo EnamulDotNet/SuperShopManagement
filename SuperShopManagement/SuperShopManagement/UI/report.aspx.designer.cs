@@ -22,22 +22,22 @@ namespace SuperShopManagement.UI {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// fromDateTextBox control.
+        /// fromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fromDateTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText fromDate;
         
         /// <summary>
-        /// toDateTextBox control.
+        /// toDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox toDateTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText toDate;
         
         /// <summary>
         /// showReportButton control.
@@ -49,12 +49,12 @@ namespace SuperShopManagement.UI {
         protected global::System.Web.UI.WebControls.Button showReportButton;
         
         /// <summary>
-        /// GridView1 control.
+        /// reportGridview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView reportGridview;
     }
 }
