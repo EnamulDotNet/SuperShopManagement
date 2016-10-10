@@ -39,6 +39,14 @@
         </fieldset>
     
     </div>
-    </form>
+    
+    <asp:GridView ID="catagoryGridView" runat="server" AutoGenerateColumns="False">
+        <Columns>
+            <asp:BoundField DataField="CatagoryId" HeaderText="Catagory Id"/>
+            <asp:BoundField DataField="catagoryName" HeaderText="Catagory Name"/>
+            <asp:BoundField DataField="CatagoryDescription" HeaderText="Catagory Description"/>
+        </Columns>
+    </asp:GridView>
+        </form>
 </body>
 </html>
