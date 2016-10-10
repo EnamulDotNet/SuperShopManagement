@@ -31,10 +31,10 @@ namespace SuperShopManagement.UI
             string todate = toDate.Value;
             SqlConnection oconn = new SqlConnection(sqlconn);
             oconn.Open();
-            SqlCommand ocmd = new SqlCommand("select P.ProductName, SUM(S.ProductSaleQty) AS SaleQuantity, SUM(P.ProductSellPrice * S.ProductSaleQty) AS TotalPrice from ProductSale S INNER JOIN Product P ON S.ProductId = P.ProductId WHERE ProductSaleDate BETWEEN '"+fmDate+"' AND '"+todate+"' GROUP BY P.ProductName", oconn);
+            SqlCommand ocmd = new SqlCommand("select P.ProductName, SUM(S.ProductSaleQty) AS SaleQuantity, SUM(P.ProductSellPrice * S.ProductSaleQty) AS TotalPrice from ProductSale S INNER JOIN Product P ON S.ProductId = P.ProductId WHERE ProductSaleDate BETWEEN Convert(date, '" + fmDate+ "', 105) AND Convert(date, '" + todate+ "', 105) GROUP BY P.ProductName", oconn);
             SqlDataAdapter oda = new SqlDataAdapter(ocmd);
             SqlCommandBuilder builder = new SqlCommandBuilder(oda);
-            DataSet ds = new DataSet();
+            DataTable ds = new DataTable();
             oda.Fill(ds);
             reportGridview.DataSource = ds;
             reportGridview.DataBind();
