@@ -104,14 +104,32 @@
     </script>
         <asp:Button ID="showReportButton" runat="server" Text="Show Report" OnClick="showReportButton_Click" />
         
-        <asp:GridView ID="reportGridview" runat="server" CssClass="Grid" AutoGenerateColumns="false" ShowFooter="true"
-EmptyDataText="No sell records has been found.">
+        <asp:GridView ID="reportGridview" runat="server" CssClass="Grid" AutoGenerateColumns="False" ShowFooter="True"
+EmptyDataText="No sell records has been found." CellPadding="4" ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" />
 <Columns>
-    <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="120" ItemStyle-HorizontalAlign="Center"/>
-    <asp:BoundField DataField="SaleQuantity" HeaderText="Sell Quantity" ItemStyle-Width="120" ItemStyle-HorizontalAlign="Center" />
-    <asp:BoundField DataField="TotalPrice" HeaderText="Total Price" ItemStyle-Width="120" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
+    <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="120" ItemStyle-HorizontalAlign="Center">
+<ItemStyle HorizontalAlign="Center" Width="120px"></ItemStyle>
+    </asp:BoundField>
+    <asp:BoundField DataField="SaleQuantity" HeaderText="Sell Quantity" ItemStyle-Width="120" ItemStyle-HorizontalAlign="Center" >
+<ItemStyle HorizontalAlign="Center" Width="120px"></ItemStyle>
+    </asp:BoundField>
+    <asp:BoundField DataField="TotalPrice" HeaderText="Total Price" ItemStyle-Width="120" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" >
+
+<ItemStyle HorizontalAlign="Right" Width="120px"></ItemStyle>
+    </asp:BoundField>
 
 </Columns>
+            <EditRowStyle BackColor="#2461BF" />
+            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EFF3FB" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+            <SortedDescendingHeaderStyle BackColor="#4870BE" />
 </asp:GridView>
     </form>
 </body>

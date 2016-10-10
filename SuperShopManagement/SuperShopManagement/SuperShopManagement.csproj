@@ -113,6 +113,7 @@
     <Content Include="SearchAutoComplete\jquery-1.10.0.min.js" />
     <Content Include="SearchAutoComplete\jquery-ui.css" />
     <Content Include="SearchAutoComplete\jquery-ui.min.js" />
+    <Content Include="UI\catagory.aspx" />
     <Content Include="UI\entry.aspx" />
     <Content Include="UI\home.aspx" />
     <Content Include="UI\index.aspx" />
@@ -138,6 +139,13 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\catagory.aspx.cs">
+      <DependentUpon>catagory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\catagory.aspx.designer.cs">
+      <DependentUpon>catagory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\entry.aspx.cs">
       <DependentUpon>entry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
