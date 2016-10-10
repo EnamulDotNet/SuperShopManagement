@@ -12,6 +12,11 @@
         <table>
             <tr>
                 <td>
+                    <a href="catagory.aspx">catagory Entry</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <a href="entry.aspx">Product Entry</a>
                 </td>
             </tr>
