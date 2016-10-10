@@ -104,12 +104,12 @@
     </script>
         <asp:Button ID="showReportButton" runat="server" Text="Show Report" OnClick="showReportButton_Click" />
         
-        <asp:GridView ID="reportGridview" runat="server" CssClass="Grid" AutoGenerateColumns="false"
+        <asp:GridView ID="reportGridview" runat="server" CssClass="Grid" AutoGenerateColumns="false" ShowFooter="true"
 EmptyDataText="No sell records has been found.">
 <Columns>
-    <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="120" />
-    <asp:BoundField DataField="SaleQuantity" HeaderText="Sell Quantity" ItemStyle-Width="120" />
-    <asp:BoundField DataField="TotalPrice" HeaderText="Total Price" ItemStyle-Width="120" />
+    <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="120" ItemStyle-HorizontalAlign="Center"/>
+    <asp:BoundField DataField="SaleQuantity" HeaderText="Sell Quantity" ItemStyle-Width="120" ItemStyle-HorizontalAlign="Center" />
+    <asp:BoundField DataField="TotalPrice" HeaderText="Total Price" ItemStyle-Width="120" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Right" />
 
 </Columns>
 </asp:GridView>
