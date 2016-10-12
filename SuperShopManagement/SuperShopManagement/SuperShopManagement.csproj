@@ -93,7 +93,29 @@
     <Content Include="DateTimePeaker\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="DateTimePeaker\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="DateTimePeaker\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="design\fonts\fontawesome-webfont.eot" />
+    <Content Include="design\fonts\fontawesome-webfont.ttf" />
+    <Content Include="design\fonts\fontawesome-webfont.woff" />
+    <Content Include="design\fonts\FontAwesome.otf" />
+    <Content Include="design\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="design\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="design\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="design\css\bootstrap.min.css" />
+    <Content Include="design\css\font-awesome.css" />
+    <Content Include="design\css\font-awesome.min.css" />
+    <Content Include="design\css\style.css" />
+    <Content Include="design\fonts\fontawesome-webfont.svg" />
+    <Content Include="design\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="design\img\34.jpg" />
+    <Content Include="design\img\44.jpg" />
+    <Content Include="design\img\clk2.png" />
+    <Content Include="design\img\colorful.jpg" />
+    <Content Include="design\img\images.jpg" />
+    <Content Include="design\index.aspx" />
+    <Content Include="design\js\bootstrap.min.js" />
+    <Content Include="design\js\jquery.backstretch.js" />
+    <Content Include="design\js\jquery.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -139,6 +161,10 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="design\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="UI\catagory.aspx.cs">
       <DependentUpon>catagory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -189,7 +215,10 @@
       <DependentUpon>view.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+    <Folder Include="registration Form\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

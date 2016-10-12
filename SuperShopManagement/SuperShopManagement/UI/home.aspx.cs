@@ -11,10 +11,10 @@ namespace SuperShopManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Sid"] == null)
-            //{
-            //    Response.Redirect("index.aspx");
-            //}
+            if (Session["Sid"] == null)
+            {
+                Response.Redirect("index.aspx");
+            }
 
         }
 

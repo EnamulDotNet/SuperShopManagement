@@ -40,5 +40,23 @@ namespace SuperShopManagement.UI
 
 
         }
-    }
+        protected void LoginButton_Click1(object sender, EventArgs e)
+        {
+            Admin admin = new Admin();
+            admin.AdminUserName = userNameTextBox.Text;
+            admin.AdminPassword = passwordTextBox.Text;
+            AdminManager manager = new AdminManager();
+            bool loginStatus = manager.Check(admin);
+            if (loginStatus)
+            {
+                Session["Sid"] = Session.SessionID;
+                Response.Redirect("home.aspx");
+            }
+            else
+            {
+
+                loginStatusLabel.Text = "Invalid username or password";
+            }
+        }
+}
 }
