@@ -1,23 +1,64 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="report.aspx.cs" Inherits="SuperShopManagement.UI.report" %>
 
-<!DOCTYPE html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-     <meta charset="UTF-8" name="viewport" content="width=device-width" />
-    <title></title>
+    <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+    <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+    <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+    <!--[if IE 9]> <html class="no-js ie9 oldie" lang="en"> <![endif]-->
+    <meta charset="utf-8">
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Coming soon, Bootstrap, Bootstrap 3.0, Free Coming Soon, free coming soon, free template, coming soon template, Html template, html template, html5, Code lab, codelab, codelab coming soon template, bootstrap coming soon template">
+    <title>Bootstrap Templates</title>
+    <!-- ============ Google fonts ============ -->
+    <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet'
+        type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300,800'
+        rel='stylesheet' type='text/css' />
+    <!-- ============ Add custom CSS here ============ -->
+    
+    <link href="../design/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../design/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../design/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="../DateTimePeaker/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../DateTimePeaker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 </head>
-<body  style="margin:5%">
+<body>
     <form id="form1" runat="server">
+        <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Juvenile Super Shop </a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li><a href="catagory.aspx">Catagory Entry</a> </li>
+                    <li><a href="entry.aspx">Products Entry</a> </li>
+                    <li><a href="view.aspx">Products Edit/Delete</a> </li>
+                    <li><a href="sell.aspx">Sell</a> </li>
+                    <li><a href="report.aspx">Report</a> </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+        <div class="ap">
+        <div id="ddd">
    <div class="container" >
         <div class="row">
             <div class='col-sm-4'>
 		<label>From Date</label>
                 <div class="form-group">
                     <div class='input-group date' id='datepicker'>
-                        <input type='text' class="form-control" id="fromDate" placeholder="dd-mm-yyyy" runat="server"/>
+                        <input type='text' class="form-control asd" id="fromDate" placeholder="dd-mm-yyyy" runat="server"/>
                         <span class="input-group-addon" id="datelogo">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -26,13 +67,16 @@
             </div>
         </div>
     </div>
+            </div>
+            </div>
+        <div id="ddd">
          <div class="container" >
         <div class="row">
             <div class='col-sm-4'>
 		<label>To Date</label>
                 <div class="form-group">
                     <div class='input-group date' id='datepicker1'>
-                        <input type='text' class="form-control" id="toDate" placeholder="dd-mm-yyyy" runat="server"/>
+                        <input type='text' class="form-control asd" id="toDate" placeholder="dd-mm-yyyy" runat="server"/>
                         <span class="input-group-addon" id="datelogo1">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -41,7 +85,7 @@
             </div>
         </div>
     </div>
-
+        </div>
     
         <script src="../DateTimePeaker/js/moment.min.js"></script>
 <!--<script src="js/bn.min.js"></script> remove comment to use bangla font-->
@@ -104,6 +148,8 @@
     </script>
         <asp:Button ID="showReportButton" runat="server" Text="Show Report" OnClick="showReportButton_Click" />
         
+        <br/><br/><br/><br/>
+        <div >
         <asp:GridView ID="reportGridview" runat="server" CssClass="Grid" AutoGenerateColumns="False" ShowFooter="True"
 EmptyDataText="No sell records has been found." CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
@@ -131,6 +177,7 @@ EmptyDataText="No sell records has been found." CellPadding="4" ForeColor="#3333
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
 </asp:GridView>
+            </div>
     </form>
 </body>
 </html>
