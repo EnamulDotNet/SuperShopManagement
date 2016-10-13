@@ -62,6 +62,7 @@ namespace SuperShopManagement.UI
                 ddldesig.DataBind();
 
             }
+            oconn.Close();
         }
 
         protected void gv1_RowDeleting(object sender, GridViewDeleteEventArgs e)

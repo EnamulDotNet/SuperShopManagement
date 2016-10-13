@@ -36,13 +36,16 @@
             </div>
             <div class="collapse navbar-collapse navbar-menubuilder">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Home</a> </li>
-                    <li><a href="catagory.aspx">Catagory</a> </li>
-                    <li><a href="entry.aspx">Products</a> </li>
+                    
+                    <li><a href="catagory.aspx">Catagory Entry</a> </li>
+                    <li><a href="catagory.aspx">Catagory Edit/Delete</a> </li>
+                    <li><a href="entry.aspx">Products Entry</a> </li>
+                    <li><a href="entry.aspx">Products Edit/Delete</a> </li>
                     <li><a href="sell.aspx">Sell</a> </li>
                     <li><a href="report.aspx">Report</a> </li>
 
                 </ul>
+
             </div>
         </div>
     </div>
