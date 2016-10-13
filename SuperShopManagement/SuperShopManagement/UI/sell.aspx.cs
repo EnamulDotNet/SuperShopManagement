@@ -9,6 +9,9 @@ using System.Web.UI.WebControls;
 using System.Web.Services;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Threading;
+
 namespace SuperShopManagement.UI
 {
     public partial class sell : System.Web.UI.Page
@@ -45,10 +48,22 @@ namespace SuperShopManagement.UI
                 }
             }
             double totalPrice = Convert.ToInt32(productSellQtyTextBox.Text) * Convert.ToDouble(productPriceTextBox.Text);
-            int stockremain = Convert.ToInt32(productQtyTextBox.Text) - Convert.ToInt32(productSellQtyTextBox.Text); 
-            dt.Rows.Add(productIdTextBox.Text.Trim(),searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(),productSellQtyTextBox.Text.Trim(), totalPrice.ToString(), stockremain.ToString());
-            ViewState["Products"] = dt;
-            this.BindGrid();
+            int stockremain = Convert.ToInt32(productQtyTextBox.Text) - Convert.ToInt32(productSellQtyTextBox.Text);
+            if (stockremain>=0)
+            {
+                maxSellLabel.Visible = false;
+                dt.Rows.Add(productIdTextBox.Text.Trim(), searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(), productSellQtyTextBox.Text.Trim(), totalPrice.ToString(), stockremain.ToString());
+                ViewState["Products"] = dt;
+                this.BindGrid();
+
+            }
+            else
+            {
+                maxSellLabel.Visible = true;
+                maxSellLabel.Text = "Sell quantity can not be more than product quantity";
+                
+            }
+            
             
         }
 

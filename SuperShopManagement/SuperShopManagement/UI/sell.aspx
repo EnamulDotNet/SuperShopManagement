@@ -114,7 +114,7 @@
                     Product Id:
                 </td>
                 <td>
-                    <asp:TextBox ID="productIdTextBox" runat="server" ReadOnly="True"></asp:TextBox>
+                    <asp:TextBox ID="productIdTextBox" runat="server" ReadOnly="True" BackColor="Silver"></asp:TextBox>
                 </td>
             </tr>
             
@@ -123,7 +123,7 @@
                     Product Quantity:
                 </td>
                 <td>
-                    <asp:TextBox ID="productQtyTextBox" runat="server" ReadOnly="True"></asp:TextBox>
+                    <asp:TextBox ID="productQtyTextBox" runat="server" ReadOnly="True" BackColor="Silver"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -131,7 +131,7 @@
                     Product Price:
                 </td>
                 <td>
-                    <asp:TextBox ID="productPriceTextBox" runat="server" ReadOnly="True"></asp:TextBox>
+                    <asp:TextBox ID="productPriceTextBox" runat="server" ReadOnly="True" BackColor="Silver"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -149,6 +149,9 @@
                 </td>
                 <td align="right">
                     <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="Insert" />
+                    <br />
+                    <br />
+                    <asp:Label ID="maxSellLabel" runat="server" ForeColor="#FF3300"></asp:Label>
                 </td>
             </tr>
         </table>
