@@ -30,7 +30,7 @@ namespace SuperShopManagement.UI
             if (loginStatus)
             {
                 Session["Sid"] = Session.SessionID;
-                Response.Redirect("home.aspx");
+                Response.Redirect("entry.aspx");
             }
             else
             {
@@ -50,7 +50,7 @@ namespace SuperShopManagement.UI
             if (loginStatus)
             {
                 Session["Sid"] = Session.SessionID;
-                Response.Redirect("home.aspx");
+                Response.Redirect("entry.aspx");
             }
             else
             {

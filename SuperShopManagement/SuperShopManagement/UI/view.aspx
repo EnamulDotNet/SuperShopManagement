@@ -48,6 +48,8 @@
             </div>
         </div>
     </div>
+                            <asp:Button ID="logoutButton" runat="server" BackColor="#0099FF" OnClick="logoutButton_Click" Text="Log Out" />
+
     <div>
        <asp:GridView ID="gv1" runat="server" AutoGenerateColumns ="False" AllowCustomPaging="True"
             onrowdatabound="gv1_RowDataBound" onrowdeleting="gv1_RowDeleting"

@@ -18,6 +18,10 @@ namespace SuperShopManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Sid"] == null)
+            {
+                Response.Redirect("index.aspx");
+            }
             if (!this.IsPostBack)
             {
                 DataTable dt = new DataTable();
@@ -149,6 +153,11 @@ namespace SuperShopManagement.UI
             
 
 
+        }
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Remove("sid");
+            Response.Redirect("index.aspx");
         }
     }
 }

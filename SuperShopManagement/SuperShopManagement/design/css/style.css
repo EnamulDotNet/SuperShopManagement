@@ -82,6 +82,10 @@ table {
 #ddd {
     margin-left: 35%;
 }
+#logoutButton {
+    margin-left: 80%;
+    background-color: lightskyblue;
+}
 #custom-bootstrap-menu.navbar-default .navbar-brand
 {
     color: white;

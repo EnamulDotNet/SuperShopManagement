@@ -16,10 +16,10 @@ namespace SuperShopManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Sid"] == null)
-            //{
-            //    Response.Redirect("index.aspx");
-            //}
+            if (Session["Sid"] == null)
+            {
+                Response.Redirect("index.aspx");
+            }
             if (!IsPostBack)
             {
                 string constr = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ConnectionString;
@@ -114,6 +114,12 @@ namespace SuperShopManagement.UI
                     ((RadioButtonList)(ctrl)).ClearSelection();
                 }
             }
+        }
+
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Remove("sid");
+            Response.Redirect("index.aspx");
         }
     }
 }

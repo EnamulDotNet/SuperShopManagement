@@ -16,6 +16,10 @@ namespace SuperShopManagement.UI
         string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Sid"] == null)
+            {
+                Response.Redirect("index.aspx");
+            }
             if (!IsPostBack)
             {
                 BindGrid();
@@ -143,6 +147,11 @@ namespace SuperShopManagement.UI
         {
             gv1.EditIndex = -1;
             BindGrid();
+        }
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Remove("sid");
+            Response.Redirect("index.aspx");
         }
     }
 }

@@ -50,6 +50,8 @@
             </div>
         </div>
     </div>
+                            <asp:Button ID="logoutButton" runat="server" BackColor="#0099FF" OnClick="logoutButton_Click" Text="Log Out" />
+
         <div class="ap">
         <div id="ddd">
    <div class="container" >

@@ -48,6 +48,8 @@
             </div>
         </div>
     </div>
+                            <asp:Button ID="logoutButton" runat="server" BackColor="#0099FF" OnClick="logoutButton_Click" Text="Log Out" />
+
     <div class="col-md-6 col-md-offset-3 ap">
         <fieldset>
             <legend>Product Entry</legend>
@@ -114,6 +116,7 @@
                         <td></td>
                         <td>
                             <asp:Label ID="saveProductLabel"  runat="server" Text=""></asp:Label>
+                            <br />
                         </td>
                     </tr>
 

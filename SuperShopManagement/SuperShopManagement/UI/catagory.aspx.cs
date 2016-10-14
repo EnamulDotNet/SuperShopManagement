@@ -18,6 +18,10 @@ namespace SuperShopManagement.UI
         {
             if (!IsPostBack)
             {
+                if (Session["Sid"] == null)
+                {
+                    Response.Redirect("index.aspx");
+                }
                 BindGrid();
             }
         }
@@ -37,7 +41,7 @@ namespace SuperShopManagement.UI
 
         protected void catagorySaveButton_Click(object sender, EventArgs e)
         {
-
+            
             SqlCommand cmd = new SqlCommand("spInsertCatagory", conn) {CommandType = CommandType.StoredProcedure};
             cmd.Parameters.AddWithValue("@CatagoryName", catagoryNameTextBox.Text);
             cmd.Parameters.AddWithValue("@CatagoryDescription", catagorydescriptionTextBox.Text);
@@ -46,5 +50,13 @@ namespace SuperShopManagement.UI
             conn.Close();
             BindGrid();
         }
+
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Remove("sid");
+            Response.Redirect("index.aspx");
+        }
+
+
     }
 }

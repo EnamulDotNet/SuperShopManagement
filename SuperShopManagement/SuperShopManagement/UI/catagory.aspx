@@ -47,7 +47,11 @@
 
             </div>
         </div>
+
     </div>
+                            <asp:Button ID="logoutButton" runat="server" BackColor="#0099FF" OnClick="logoutButton_Click" Text="Log Out" />
+            
+
     <div class="ap col-md-6 col-md-offset-3">
         <fieldset>
             <legend>Catagory Entry</legend>
@@ -90,7 +94,6 @@
         </Columns>
     </asp:GridView>
          </div>
-
         </form>
 </body>
 </html>
