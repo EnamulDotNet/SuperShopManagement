@@ -11,7 +11,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Coming soon, Bootstrap, Bootstrap 3.0, Free Coming Soon, free coming soon, free template, coming soon template, Html template, html template, html5, Code lab, codelab, codelab coming soon template, bootstrap coming soon template">
-    <title>Bootstrap Templates</title>
+    <title>Product Entry</title>
     <!-- ============ Google fonts ============ -->
     <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet'
         type='text/css' />
