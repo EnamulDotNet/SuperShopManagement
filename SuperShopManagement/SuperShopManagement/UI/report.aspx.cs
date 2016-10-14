@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -18,10 +19,10 @@ namespace SuperShopManagement.UI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                BindGrid();
-            }
+            //if (!IsPostBack)
+            //{
+            //    BindGrid();
+            //}
 
 
 
@@ -29,7 +30,10 @@ namespace SuperShopManagement.UI
         public void BindGrid()
         {
             string fmDate = fromDate.Value;
-            string todate = toDate.Value;
+            string toodate = toDate.Value;
+            DateTime td = Convert.ToDateTime(toodate).AddDays(1);
+            string todate = td.ToString("dd-MM-yyyy");
+
             SqlConnection oconn = new SqlConnection(sqlconn);
             oconn.Open();
             SqlCommand ocmd = new SqlCommand("select P.ProductName, SUM(S.ProductSaleQty) AS SaleQuantity, SUM(P.ProductSellPrice * S.ProductSaleQty) AS TotalPrice from ProductSale S INNER JOIN Product P ON S.ProductId = P.ProductId WHERE ProductSaleDate BETWEEN Convert(date, '" + fmDate+ "', 105) AND Convert(date, '" + todate+ "', 105) GROUP BY P.ProductName", oconn);
@@ -52,6 +56,7 @@ namespace SuperShopManagement.UI
 
                 ;
             }
+            oconn.Close();
             
         }
 

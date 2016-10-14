@@ -36,33 +36,42 @@ namespace SuperShopManagement.UI
         protected void Insert(object sender, EventArgs e)
         {
 
-
-            DataTable dt = (DataTable)ViewState["Products"];
-            for (int i = 0; i < GridView1.Rows.Count; i++)
+            try
             {
-                string id = GridView1.Rows[i].Cells[0].Text;
-                if (id==productIdTextBox.Text.Trim())
+                DataTable dt = (DataTable)ViewState["Products"];
+                for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
-                    dt.Rows[i].Delete();
-                    break;
+                    string id = GridView1.Rows[i].Cells[0].Text;
+                    if (id == productIdTextBox.Text.Trim())
+                    {
+                        dt.Rows[i].Delete();
+                        break;
+                    }
+                }
+                double totalPrice = Convert.ToInt32(productSellQtyTextBox.Text) * Convert.ToDouble(productPriceTextBox.Text);
+                int stockremain = Convert.ToInt32(productQtyTextBox.Text) - Convert.ToInt32(productSellQtyTextBox.Text);
+                if (stockremain >= 0)
+                {
+                    maxSellLabel.Visible = false;
+                    dt.Rows.Add(productIdTextBox.Text.Trim(), searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(), productSellQtyTextBox.Text.Trim(), totalPrice.ToString(), stockremain.ToString());
+                    ViewState["Products"] = dt;
+                    this.BindGrid();
+
+                }
+                else
+                {
+                    maxSellLabel.Visible = true;
+                    maxSellLabel.Text = "Sell quantity can not be more than product quantity";
+                    ViewState["Products"] = dt;
+                    this.BindGrid();
                 }
             }
-            double totalPrice = Convert.ToInt32(productSellQtyTextBox.Text) * Convert.ToDouble(productPriceTextBox.Text);
-            int stockremain = Convert.ToInt32(productQtyTextBox.Text) - Convert.ToInt32(productSellQtyTextBox.Text);
-            if (stockremain>=0)
+            catch (Exception)
             {
-                maxSellLabel.Visible = false;
-                dt.Rows.Add(productIdTextBox.Text.Trim(), searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(), productSellQtyTextBox.Text.Trim(), totalPrice.ToString(), stockremain.ToString());
-                ViewState["Products"] = dt;
-                this.BindGrid();
 
+                ;
             }
-            else
-            {
-                maxSellLabel.Visible = true;
-                maxSellLabel.Text = "Sell quantity can not be more than product quantity";
-                
-            }
+            
             
             
         }
