@@ -71,9 +71,9 @@
         <asp:TextBox CssClass="myclass" ID="searchTextBox" runat="server" Height="26px"></asp:TextBox>
 &nbsp;
         <asp:Button ID="searchButton" runat="server" Height="29px" OnClick="searchButton_Click" Text="Search" />
-       <asp:GridView ID="gv1" runat="server" AutoGenerateColumns ="False" AllowCustomPaging="True"
+       <asp:GridView ID="gv1" runat="server" AutoGenerateColumns ="False" AllowPaging="true" PageSize="2" OnPageIndexChanging="gv1_PageIndexChanging"
             onrowdatabound="gv1_RowDataBound" onrowdeleting="gv1_RowDeleting"
-            onrowediting="gv1_RowEditing" DataKeyNames="ProductId" ShowFooter="True"
+            onrowediting="gv1_RowEditing" DataKeyNames="ProductId" 
             onrowcommand="gv1_RowCommand" onrowupdating="gv1_RowUpdating"
             CellPadding="4" GridLines="None"
             onrowcancelingedit="gv1_RowCancelingEdit" ForeColor="#333333" >

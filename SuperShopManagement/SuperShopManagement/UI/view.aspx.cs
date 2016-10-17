@@ -71,6 +71,11 @@ namespace SuperShopManagement.UI
             oconn.Close();
         }
 
+        protected void gv1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gv1.PageIndex = e.NewPageIndex;
+            BindGrid(); //bindgridview will get the data source and bind it again
+        }
         protected void gv1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int ProductId = Convert.ToInt32(gv1.DataKeys[e.RowIndex].Value);
