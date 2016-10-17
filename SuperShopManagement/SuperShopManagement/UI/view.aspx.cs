@@ -9,6 +9,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SuperShopManagement.BLL;
 
+using System.Text.RegularExpressions;
+
 namespace SuperShopManagement.UI
 {
     public partial class view : System.Web.UI.Page
@@ -57,15 +59,15 @@ namespace SuperShopManagement.UI
                 ddl.DataTextField = "CatagoryName";
                 ddl.DataBind();
             }
-            if (e.Row.RowType == DataControlRowType.Footer)
-            {
-                DropDownList ddldesig = (DropDownList)e.Row.FindControl("ddladdCatagory");
-                ddldesig.DataSource = ds;
-                ddldesig.DataValueField = "CatagoryId";
-                ddldesig.DataTextField = "CatagoryName";
-                ddldesig.DataBind();
+            //if (e.Row.RowType == DataControlRowType.Footer)
+            //{
+            //    DropDownList ddldesig = (DropDownList)e.Row.FindControl("ddladdCatagory");
+            //    ddldesig.DataSource = ds;
+            //    ddldesig.DataValueField = "CatagoryId";
+            //    ddldesig.DataTextField = "CatagoryName";
+            //    ddldesig.DataBind();
 
-            }
+            //}
             oconn.Close();
         }
 
@@ -153,5 +155,28 @@ namespace SuperShopManagement.UI
             Session.Remove("sid");
             Response.Redirect("index.aspx");
         }
+
+        protected void searchButton_Click(object sender, EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    
+                    cmd.CommandText = "SELECT P.ProductId,P.ProductName,P.ProductDescription,C.CatagoryName,P.ProductQty,P.ProductBuyPrice,P.ProductSellPrice FROM Product P INNER JOIN Catagory C ON P.CatagoryId=C.CatagoryId WHERE P.ProductName LIKE '%' + @searchText + '%'";
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@searchText", searchTextBox.Text.Trim());
+                    DataTable dt = new DataTable();
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(dt);
+                        gv1.DataSource = dt;
+                        gv1.DataBind();
+                    }
+                }
+            }
+        }
+
     }
 }

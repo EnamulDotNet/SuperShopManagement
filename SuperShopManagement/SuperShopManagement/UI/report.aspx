@@ -3,6 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <style>
+       body {
+           background-image: url("b18.png");
+       } 
+    </style>
     <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
     <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
     <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->

@@ -135,6 +135,7 @@
     <Content Include="SearchAutoComplete\jquery-1.10.0.min.js" />
     <Content Include="SearchAutoComplete\jquery-ui.css" />
     <Content Include="SearchAutoComplete\jquery-ui.min.js" />
+    <Content Include="UI\b18.png" />
     <Content Include="UI\catagory.aspx" />
     <Content Include="UI\entry.aspx" />
     <Content Include="UI\home.aspx" />

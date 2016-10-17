@@ -3,6 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <style>
+       body {
+           background-image: url("b18.png");
+       }
+       fieldset {
+           background-color: white;
+       } 
+    </style>
     <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
     <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
     <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
@@ -62,6 +70,7 @@
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="catagoryNameTextBox"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="catagoryNameTextBox" ErrorMessage="Catagory Empty!" ForeColor="#CC3300"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -86,12 +95,23 @@
     </div>
      <div class="col-md-6 col-md-offset-3">
     
-    <asp:GridView ID="catagoryGridView" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="catagoryGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="CatagoryId" HeaderText="Catagory Id"/>
             <asp:BoundField DataField="catagoryName" HeaderText="Catagory Name"/>
             <asp:BoundField DataField="CatagoryDescription" HeaderText="Catagory Description"/>
         </Columns>
+        <EditRowStyle BackColor="#7C6F57" />
+        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#E3EAEB" />
+        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#F8FAFA" />
+        <SortedAscendingHeaderStyle BackColor="#246B61" />
+        <SortedDescendingCellStyle BackColor="#D4DFE1" />
+        <SortedDescendingHeaderStyle BackColor="#15524A" />
     </asp:GridView>
          </div>
         </form>
