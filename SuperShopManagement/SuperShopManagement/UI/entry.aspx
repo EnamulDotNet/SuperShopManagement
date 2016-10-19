@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-                            <asp:Button ID="logoutButton" runat="server" BackColor="#0099FF" OnClick="logoutButton_Click" Text="Log Out" />
+                            <asp:Button ID="logoutButton" runat="server" BackColor="#0099FF" OnClick="logoutButton_Click" Text="Log Out" CausesValidation="False" />
 
     <div class="col-md-6 col-md-offset-3 ap">
         <fieldset>

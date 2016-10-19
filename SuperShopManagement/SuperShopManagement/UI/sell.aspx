@@ -112,6 +112,9 @@
                 <td align="right">
                     <asp:Button ID="searchButton" Text="Search" runat="server" OnClick="Submit" />
                 </td>
+                <td>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="searchTextBox" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator>
+                </td>
                 </tr>
                 
                 
@@ -147,6 +150,9 @@
                 </td>
                 <td>
                     <asp:TextBox ID="productSellQtyTextBox" runat="server"></asp:TextBox>
+                </td>
+                 <td>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="productSellQtyTextBox" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             
