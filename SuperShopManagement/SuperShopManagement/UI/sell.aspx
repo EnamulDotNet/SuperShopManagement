@@ -135,6 +135,8 @@
                 <td>
                     <asp:TextBox ID="productQtyTextBox" runat="server" ReadOnly="True" BackColor="Silver"></asp:TextBox>
                 </td>
+               
+            
             </tr>
             <tr>
                 <td>
@@ -152,8 +154,10 @@
                     <asp:TextBox ID="productSellQtyTextBox" runat="server"></asp:TextBox>
                 </td>
                  <td>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="productSellQtyTextBox" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="productSellQtyTextBox" ErrorMessage="Required!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="productSellQtyTextBox" ErrorMessage="Numeric only!" ForeColor="Red" ValidationExpression="^[0-9]*$" Display="Dynamic"></asp:RegularExpressionValidator>
+               
+                      </td>
             </tr>
             
             <tr>

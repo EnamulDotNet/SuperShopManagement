@@ -70,7 +70,10 @@
                     </td>
                     <td>
                         <asp:TextBox runat="server" ID="catagoryNameTextBox"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="catagoryNameTextBox" ErrorMessage="Catagory Empty!" ForeColor="#CC3300"></asp:RequiredFieldValidator>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="catagoryNameTextBox" ErrorMessage="Required!" ForeColor="#CC3300"></asp:RequiredFieldValidator>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -80,6 +83,7 @@
                     <td>
                         <asp:TextBox runat="server" ID="catagorydescriptionTextBox" TextMode="MultiLine"></asp:TextBox>
                     </td>
+
                 </tr>
                 <tr>
                     <td>
@@ -95,12 +99,12 @@
     </div>
      <div class="col-md-6 col-md-offset-3">
     
-    <asp:GridView ID="catagoryGridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="catagoryGridView" Width="800px" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:BoundField DataField="CatagoryId" HeaderText="Catagory Id"/>
-            <asp:BoundField DataField="catagoryName" HeaderText="Catagory Name"/>
-            <asp:BoundField DataField="CatagoryDescription" HeaderText="Catagory Description"/>
+            <asp:BoundField DataField="CatagoryId" HeaderText="Id"/>
+            <asp:BoundField DataField="catagoryName" HeaderText="Name"/>
+            <asp:BoundField DataField="CatagoryDescription" HeaderText="Description"/>
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />
         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />

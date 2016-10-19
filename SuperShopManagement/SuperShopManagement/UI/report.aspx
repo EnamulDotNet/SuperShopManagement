@@ -157,7 +157,7 @@
         
         <br/><br/><br/><br/>
         <div >
-        <asp:GridView ID="reportGridview" runat="server" CssClass="Grid" AutoGenerateColumns="False" ShowFooter="True"
+        <asp:GridView ID="reportGridview" Width="500px" runat="server" CssClass="Grid" AutoGenerateColumns="False" ShowFooter="True"
 EmptyDataText="No sell records has been found." CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
 <Columns>

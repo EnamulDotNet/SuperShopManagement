@@ -75,7 +75,10 @@
                         </td>
                         <td class="auto-style1">
                             <asp:TextBox ID="productNameTextBox"  runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="productNameTextBox" ErrorMessage="Please give product name!" ForeColor="#CC3300"></asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="productNameTextBox" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -86,9 +89,12 @@
                             <asp:DropDownList ID="catagoryDropdown"  runat="server"></asp:DropDownList>
                 
                 
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="catagoryDropdown" ErrorMessage="Please select catagory" ForeColor="Red"></asp:RequiredFieldValidator>
                 
                 
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="catagoryDropdown" ErrorMessage="Required!" ForeColor="Red" InitialValue="0"></asp:RequiredFieldValidator>
+                            
                         </td>
             
                     </tr>
@@ -106,7 +112,10 @@
                         </td>
                         <td class="auto-style1">
                             <asp:TextBox ID="productQtyTextBox" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="productQtyTextBox" ErrorMessage="Please give product quantity!" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="productQtyTextBox" ErrorMessage="Required!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="productQtyTextBox" ErrorMessage="Numeric only!" ForeColor="Red" ValidationExpression="^[0-9]*$" Display="Dynamic"></asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr>
@@ -115,7 +124,11 @@
                         </td>
                         <td class="auto-style1">
                             <asp:TextBox ID="productBuyPriceTextBox" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="productBuyPriceTextBox" ErrorMessage="Please give buy price" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="productBuyPriceTextBox" ErrorMessage="Required!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="productBuyPriceTextBox" ErrorMessage="Decimal only!" ForeColor="Red" ValidationExpression="^\d*\.?\d*$" Display="Dynamic"></asp:RegularExpressionValidator>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -124,7 +137,11 @@
                         </td>
                         <td class="auto-style1">
                             <asp:TextBox ID="productSellPriceTextBox" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="productSellPriceTextBox" ErrorMessage="Please give sell price!" ForeColor="#CC0000"></asp:RequiredFieldValidator>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="productSellPriceTextBox" ErrorMessage="Required!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="productSellPriceTextBox" ErrorMessage="Decimal only!" ForeColor="Red" ValidationExpression="^\d*\.?\d*$" Display="Dynamic"></asp:RegularExpressionValidator>
+                            
                         </td>
                     </tr>
                     <tr>
