@@ -110,7 +110,7 @@
                     <asp:HiddenField ID="ProductId" runat="server" />
                 </td>
                 <td align="right">
-                    <asp:Button ID="searchButton" Text="Search" runat="server" OnClick="Submit" />
+                    <asp:Button ID="searchButton" Text="Search" runat="server" OnClick="Submit" CausesValidation="False" />
                 </td>
                 <td>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="searchTextBox" ErrorMessage="Required!" ForeColor="Red"></asp:RequiredFieldValidator>
