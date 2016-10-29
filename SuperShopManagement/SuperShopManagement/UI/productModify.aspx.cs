@@ -7,26 +7,23 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SuperShopManagement.BLL;
-
-using System.Text.RegularExpressions;
 
 namespace SuperShopManagement.UI
 {
-    public partial class view : System.Web.UI.Page
+    public partial class productModify : System.Web.UI.Page
     {
         string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Sid"] == null)
             {
-                Response.Redirect("index.aspx");
+                Response.Redirect("login.aspx");
             }
             if (!IsPostBack)
             {
                 BindGrid();
             }
-
         }
         public void BindGrid()
         {
@@ -41,7 +38,6 @@ namespace SuperShopManagement.UI
             gv1.DataBind();
 
         }
-
         protected void gv1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             SqlConnection oconn = new SqlConnection(sqlconn);
@@ -70,7 +66,6 @@ namespace SuperShopManagement.UI
             //}
             oconn.Close();
         }
-
         protected void gv1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gv1.PageIndex = e.NewPageIndex;
@@ -90,13 +85,11 @@ namespace SuperShopManagement.UI
             BindGrid();
 
         }
-
         protected void gv1_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gv1.EditIndex = e.NewEditIndex;
             BindGrid();
         }
-
         protected void gv1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("Insert"))
@@ -119,7 +112,6 @@ namespace SuperShopManagement.UI
             }
 
         }
-
         protected void gv1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             int ProductId = int.Parse(((Label)(gv1.Rows[e.RowIndex].Cells[1].FindControl("lblProductId"))).Text);
@@ -149,7 +141,6 @@ namespace SuperShopManagement.UI
 
 
         }
-
         protected void gv1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gv1.EditIndex = -1;
@@ -168,7 +159,7 @@ namespace SuperShopManagement.UI
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    
+
                     cmd.CommandText = "SELECT P.ProductId,P.ProductName,P.ProductDescription,C.CatagoryName,P.ProductQty,P.ProductBuyPrice,P.ProductSellPrice FROM Product P INNER JOIN Catagory C ON P.CatagoryId=C.CatagoryId WHERE P.ProductName LIKE '%' + @searchText + '%'";
                     cmd.Connection = con;
                     cmd.Parameters.AddWithValue("@searchText", searchTextBox.Text.Trim());
@@ -182,6 +173,5 @@ namespace SuperShopManagement.UI
                 }
             }
         }
-
     }
 }

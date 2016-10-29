@@ -12,12 +12,10 @@ namespace SuperShopManagement.DAL
     {
         public bool CheckLogin(Admin admin)
         {
-            //SqlCommand cmd = new SqlCommand("AdminCheck", connection) { CommandType = CommandType.StoredProcedure };
-            //connection.Open();
-            //int rowaffeted = cmd.ExecuteNonQuery();
-            //connection.Close();
-            string query = "SELECT * FROM Admin WHERE AdminUserName='" + admin.AdminUserName + "' AND AdminPassword='" + admin.AdminPassword + "'";
-            command = new SqlCommand(query, connection);
+            command = new SqlCommand("uspCheckAdmin", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@AdminUserName", admin.AdminUserName);
+            command.Parameters.AddWithValue("@AdminPassword", admin.AdminPassword);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
             bool loginsts = reader.HasRows;

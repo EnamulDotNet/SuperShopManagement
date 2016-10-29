@@ -3,60 +3,81 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SuperShopManagement.BLL;
+using SuperShopManagement.Models;
 
 namespace SuperShopManagement.UI
 {
-    public partial class catagory : System.Web.UI.Page
+    public partial class catagory1 : System.Web.UI.Page
     {
-        static string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
-        SqlConnection conn = new SqlConnection(sqlconn);
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Sid"] == null)
+            {
+                Response.Redirect("login.aspx");
+            }
             if (!IsPostBack)
             {
-                if (Session["Sid"] == null)
-                {
-                    Response.Redirect("index.aspx");
-                }
-                BindGrid();
+
+                PopulateCatagoryDrodown();
             }
+
+
         }
-        public void BindGrid()
+
+        public void PopulateCatagoryDrodown()
         {
-            
-            conn.Open();
-            SqlCommand ocmd = new SqlCommand("SELECT * FROM Catagory", conn);
-            SqlDataAdapter oda = new SqlDataAdapter(ocmd);
-            DataTable dt = new DataTable();
-            oda.Fill(dt);
-            catagoryGridView.DataSource = dt;
-            catagoryGridView.DataBind();
-            
+
+            string constr = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("uspPopulateUnit"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    catagoryMeasurementDropdownList.DataSource = cmd.ExecuteReader();
+                    catagoryMeasurementDropdownList.DataTextField = "MeasurementName";
+                    catagoryMeasurementDropdownList.DataValueField = "MeasurementId";
+                    catagoryMeasurementDropdownList.DataBind();
+                    con.Close();
+                }
+            }
+            catagoryMeasurementDropdownList.Items.Insert(0, new ListItem("---Select Unit---", "0"));
+            catagoryMeasurementDropdownList.Items[0].Selected = true;
+            catagoryMeasurementDropdownList.Items[0].Attributes["disabled"] = "disabled";
 
         }
 
         protected void catagorySaveButton_Click(object sender, EventArgs e)
         {
-            
-            SqlCommand cmd = new SqlCommand("spInsertCatagory", conn) {CommandType = CommandType.StoredProcedure};
-            cmd.Parameters.AddWithValue("@CatagoryName", catagoryNameTextBox.Text);
-            cmd.Parameters.AddWithValue("@CatagoryDescription", catagorydescriptionTextBox.Text);
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
-            BindGrid();
+            Catagory catagory=new Catagory();
+
+            catagory.CatagoryName = catagoryNameTextBox.Text;
+            catagory.MeasurementId = Convert.ToInt32(catagoryMeasurementDropdownList.SelectedValue);
+            catagory.CatagoryDescription = catagorydescriptionTextBox.Text;
+
+            CatagoryManager catagoryManager=new CatagoryManager();
+            bool catagorySaveStatus = catagoryManager.CatagorySave(catagory);
+            if (catagorySaveStatus)
+            {
+                catagorySaveStatusLabel.Text = "Save successful.";
+                catagorySaveStatusLabel.ForeColor=Color.MediumSeaGreen;
+                catagoryNameTextBox.Text = String.Empty;
+                catagoryMeasurementDropdownList.SelectedValue = "0";
+                catagorydescriptionTextBox.Text=String.Empty;
+            }
+            else
+            {
+                catagorySaveStatusLabel.Text = "Save fail.";
+                catagorySaveStatusLabel.ForeColor = Color.Red;
+            }
+
         }
-
-        protected void logoutButton_Click(object sender, EventArgs e)
-        {
-            Session.Remove("sid");
-            Response.Redirect("index.aspx");
-        }
-
-
     }
 }

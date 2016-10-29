@@ -15,9 +15,11 @@ namespace SuperShopManagement.DAL
             SqlCommand cmd = new SqlCommand("InsertProducts", connection) { CommandType = CommandType.StoredProcedure };
             cmd.Parameters.AddWithValue("@ProductName", product.ProductName);
             cmd.Parameters.AddWithValue("@ProductDescription", product.ProductDescription);
+            cmd.Parameters.AddWithValue("@SupplierId", product.SupplierId);
             cmd.Parameters.AddWithValue("@ProductQty", product.ProductQty);
             cmd.Parameters.AddWithValue("@ProductBuyPrice", product.ProductBuyPrice);
             cmd.Parameters.AddWithValue("@ProductSellPrice", product.ProductSalePrice);
+            cmd.Parameters.AddWithValue("@ProductTax", product.ProductTax);
             cmd.Parameters.AddWithValue("@CatagoryId", product.CatagoryId);
             connection.Open();
             int rowaffeted=cmd.ExecuteNonQuery();

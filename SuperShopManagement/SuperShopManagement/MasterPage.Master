@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="SuperShopManagement.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server">
+            
+        </asp:ContentPlaceHolder>
+    </title>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div>
+            
+            <%--<img src="/UI/clk2.png" width="400px" height="200px" alt="supershoppic"/>
+            <img src="/UI/download.jpg" width="400px"height="200px" />
+            <img src="/UI/downloa.jpg" width="400px"height="200px"/>
+            <img src="/UI/a.jpg" width="355px"height="200px"/>--%>
+            
+        </div>
+        <div>
+    <ul class="topnav" id="myTopnav" style="font-family: 'Times New Roman', Georgia, Serif !important">
+                    <li id="homeMenu"><a href="login.aspx">Home</a></li> 
+                    <li id="catamenu"><a href="catagory.aspx">Catagory Entry</a> </li> 
+                    <li id="catamodimenu"><a href="catagorymodify.aspx">Catagory Modify</a> </li>
+                    <li id="prodentrmenu"><a href="productEntry.aspx">Product Entry</a></li>
+                    <li id="prodmodimenu"><a href="ProductModify.aspx">Product Modify</a></li>
+                    <li id="prodsellmenu"><a href="productsell.aspx">Sell</a></li> 
+                    <li id="sellrepomenu"><a href="sellreport.aspx">Report</a></li>
+    
+      
+        
+                    <li class="floatright"><a href="logout.aspx"><b>Log Out</b></a></li>
+                    <li class="icon">
+    <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+  </li>
+</ul>
+
+
+        </div>
+        <asp:ContentPlaceHolder ID="body" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+        <div>
+            <footer class="footer">
+                Copyright©Juvenile Pacers 
+            </footer>
+        </div>
+
+    </div>
+    </form>
+    <script>
+        function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                     x.className += " responsive";
+                     }
+                else {
+                     x.className = "topnav";
+                     }
+                 }
+    </script>
+    
+    
+</body>
+</html>

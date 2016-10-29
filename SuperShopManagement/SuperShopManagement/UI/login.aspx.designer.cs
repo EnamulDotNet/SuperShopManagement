@@ -10,60 +10,42 @@
 namespace SuperShopManagement.UI {
     
     
-    public partial class catagory1 {
+    public partial class login1 {
         
         /// <summary>
-        /// catagoryNameTextBox control.
+        /// usernameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox catagoryNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox usernameTextBox;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// passwordTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.TextBox passwordTextBox;
         
         /// <summary>
-        /// catagoryMeasurementDropdownList control.
+        /// loginButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList catagoryMeasurementDropdownList;
+        protected global::System.Web.UI.WebControls.Button loginButton;
         
         /// <summary>
-        /// catagorydescriptionTextBox control.
+        /// loginStatusLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox catagorydescriptionTextBox;
-        
-        /// <summary>
-        /// catagorySaveButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button catagorySaveButton;
-        
-        /// <summary>
-        /// catagorySaveStatusLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label catagorySaveStatusLabel;
+        protected global::System.Web.UI.WebControls.Label loginStatusLabel;
     }
 }

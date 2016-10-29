@@ -10,60 +10,42 @@
 namespace SuperShopManagement.UI {
     
     
-    public partial class report {
+    public partial class catagoryModify {
         
         /// <summary>
-        /// form1 control.
+        /// searchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox searchTextBox;
         
         /// <summary>
-        /// logoutButton control.
+        /// searchButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button logoutButton;
+        protected global::System.Web.UI.WebControls.Button searchButton;
         
         /// <summary>
-        /// fromDate control.
+        /// catGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText fromDate;
+        protected global::System.Web.UI.WebControls.GridView catGridView;
         
         /// <summary>
-        /// toDate control.
+        /// catagoryModifyStatusLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText toDate;
-        
-        /// <summary>
-        /// showReportButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button showReportButton;
-        
-        /// <summary>
-        /// reportGridview control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView reportGridview;
+        protected global::System.Web.UI.WebControls.Label catagoryModifyStatusLabel;
     }
 }

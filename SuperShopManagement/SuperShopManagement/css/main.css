@@ -1,0 +1,70 @@
+﻿ body {
+     margin: 0;
+            background-image: url('../images/b8.png') !important;
+        }
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+    color: black;
+  background-color: peachpuff;
+  font-family: "Times New Roman", Georgia, Serif !important;  
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: inline-block;
+  color: blue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ul.topnav li a:hover {background-color: sandybrown;}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+        .footer {
+            margin-top: 220px;
+            margin-bottom: 0px;
+            background-color: peachpuff;
+            color: blue;
+            text-align: center;
+            font-size: 16px;
+            font-family: verdana;
+            
+        }
+        .floatright {
+            float: right !important;
+        }
+        .active {
+            background-color: sandybrown;
+        }
