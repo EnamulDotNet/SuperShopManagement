@@ -236,7 +236,7 @@ EmptyDataText="No records has been added.">
                 </td>
                 <td>
         <asp:TextBox ID="givenAmountTextBox" runat="server" Width="70px"></asp:TextBox>
-                    <asp:CompareValidator ID="CompareValidator22" runat="server" ErrorMessage="Positive value only!" ControlToValidate="givenAmountTextBox" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" ForeColor="Red"></asp:CompareValidator>
+                    <asp:CompareValidator ID="CompareValidator22" runat="server" ErrorMessage="Invalid!" ControlToValidate="givenAmountTextBox" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" ForeColor="Red"></asp:CompareValidator>
 
                     TK.
                 </td>

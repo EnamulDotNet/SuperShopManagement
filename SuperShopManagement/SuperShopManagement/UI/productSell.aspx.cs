@@ -223,9 +223,10 @@ namespace SuperShopManagement.UI
 
 
             returnTextBox.Text = retk.ToString();
-            if (retk<0)
+            if (retk < 0)
             {
-                moremoneyLabel.Text = "Need more " + (Convert.ToDecimal(ViewState["totamut"])- Convert.ToDecimal(givenAmountTextBox.Text)).ToString();
+                
+                moremoneyLabel.Text = "Need more " + (Convert.ToDecimal(ViewState["totamut"])- Convert.ToDecimal(givenAmountTextBox.Text)).ToString()+" TK.";
             }
 
         }
