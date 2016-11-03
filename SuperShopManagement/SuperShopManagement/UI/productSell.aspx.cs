@@ -67,37 +67,42 @@ namespace SuperShopManagement.UI
                 decimal sellqty = Convert.ToDecimal(productSellQtyTextBox.Text.Trim());
                 decimal stockremain = Convert.ToDecimal(productQtyTextBox.Text) - Convert.ToDecimal(productSellQtyTextBox.Text);
 
-                
-                if (stockremain >= 0)
+                if (sellqty.ToString("N3") == "0.000" || stockremain < 0)
                 {
-                    maxSellLabel.Visible = false;
+                    sellqtyLabel.Visible = true;
+                    sellqtyLabel.Text = "Sell quantity error!";
+
+                    ViewState["Products"] = dt;
+                    this.BindGrid();
+                    productSellQtyTextBox.Text = String.Empty;
+                    productSellQtyTextBox.Focus();
+                }
+                else
+                {
+                    sellqtyLabel.Visible = false;
+                   
                     dt.Rows.Add(productIdTextBox.Text.Trim(), searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(),
                        sellqty.ToString("N3") , totalPrice.ToString("N2"), stockremain.ToString("N3"));
                     ViewState["Products"] = dt;
                     this.BindGrid();
-
+                    searchTextBox.Text = String.Empty;
+                    productIdTextBox.Text = String.Empty;
+                    productQtyTextBox.Text = String.Empty;
+                    productPriceTextBox.Text = String.Empty;
+                    productSellQtyTextBox.Text = String.Empty;
+                    searchTextBox.Focus();
+                    
 
                 }
-                else
-                {
-                    maxSellLabel.Visible = true;
-                    maxSellLabel.Text = "Sell quantity can not be more than product quantity";
-                    ViewState["Products"] = dt;
-                    this.BindGrid();
-                }
+                 
+               
             }
             catch (Exception)
             {
 
                 ;
             }
-            searchTextBox.Text=String.Empty;
-            productIdTextBox.Text=String.Empty;
-            productQtyTextBox.Text=String.Empty;
-            productPriceTextBox.Text=String.Empty;
-            productSellQtyTextBox.Text=String.Empty;
-            searchTextBox.Focus();
-            GridView1.Visible = true;
+            
         }
 
         [WebMethod]
@@ -162,7 +167,7 @@ namespace SuperShopManagement.UI
                     productSellQtyTextBox.Text = "";
                 }
                 
-                
+                ViewState.Clear();
                 Response.Redirect("productSell.aspx");
             }
             catch (Exception)

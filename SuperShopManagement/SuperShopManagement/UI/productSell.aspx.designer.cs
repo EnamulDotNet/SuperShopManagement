@@ -31,6 +31,15 @@ namespace SuperShopManagement.UI {
         protected global::System.Web.UI.WebControls.HiddenField ProductId;
         
         /// <summary>
+        /// searchButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button searchButton;
+        
+        /// <summary>
         /// productIdTextBox control.
         /// </summary>
         /// <remarks>
@@ -85,13 +94,13 @@ namespace SuperShopManagement.UI {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// maxSellLabel control.
+        /// sellqtyLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label maxSellLabel;
+        protected global::System.Web.UI.WebControls.Label sellqtyLabel;
         
         /// <summary>
         /// GridView1 control.

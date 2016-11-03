@@ -13,11 +13,11 @@
             
             background-color: white;
         }
-        .save {
+        .searbtn {
             background-color: peachpuff;
             color: blue;
         }
-        .save:hover {
+        .searbtn:hover {
             background-color: sandybrown;
         }
         
@@ -117,7 +117,7 @@
                 
                 <td>
                    
-                     
+                    <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="searchButton_Click" CausesValidation="False" Height="35px" Width="67px" CssClass="searbtn"/>
 
                
                      </td>
@@ -190,8 +190,9 @@
                     <asp:Button ID="btnAdd" CssClass="btn" runat="server" Text="Add" OnClick="btnAdd_Click" Height="33px" Width="71px" />
                     <br />
                     <br />
-                    <asp:Label ID="maxSellLabel" runat="server" ForeColor="#FF3300"></asp:Label>
-                </td>
+                    <asp:Label ID="sellqtyLabel" runat="server" ForeColor="#FF3300"></asp:Label>
+                    
+                     </td>
             </tr>
         </table>
            
