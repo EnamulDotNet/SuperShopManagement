@@ -76,7 +76,7 @@
             <asp:BoundField ItemStyle-Width="150px" DataField="CatagoryDescription" HeaderText="Description" >
 <ItemStyle Width="150px"></ItemStyle>
             </asp:BoundField>
-            <asp:BoundField ItemStyle-Width="150px" DataField="CreateDate" ReadOnly="True" HeaderText="Date" >
+            <asp:BoundField ItemStyle-Width="150px" DataField="CreateDate" HeaderText="Date" >
 <ItemStyle Width="150px"></ItemStyle>
             </asp:BoundField>
             <asp:CommandField ItemStyle-Width="300px" ButtonType="Button" HeaderText="Action" DeleteText="Remove" EditText="Modify" ShowEditButton="True" ShowDeleteButton="True" ><ControlStyle CssClass="MyLinkButtons" />

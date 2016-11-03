@@ -33,10 +33,10 @@ namespace SuperShopManagement.UI
                 ViewState["Products"] = dt;
                 this.BindGrid();
 
-
+                
 
             }
-
+           
         }
 
         protected void BindGrid()
@@ -63,14 +63,14 @@ namespace SuperShopManagement.UI
                         break;
                     }
                 }
-                double totalPrice = Convert.ToInt32(productSellQtyTextBox.Text)*
-                                    Convert.ToDouble(productPriceTextBox.Text);
-                int stockremain = Convert.ToInt32(productQtyTextBox.Text) - Convert.ToInt32(productSellQtyTextBox.Text);
+                decimal totalPrice = Convert.ToDecimal(productSellQtyTextBox.Text)*
+                                    Convert.ToDecimal(productPriceTextBox.Text);
+                decimal stockremain = Convert.ToDecimal(productQtyTextBox.Text) - Convert.ToDecimal(productSellQtyTextBox.Text);
                 if (stockremain >= 0)
                 {
                     maxSellLabel.Visible = false;
                     dt.Rows.Add(productIdTextBox.Text.Trim(), searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(),
-                        productSellQtyTextBox.Text.Trim(), totalPrice.ToString(), stockremain.ToString());
+                        productSellQtyTextBox.Text.Trim(), $"{totalPrice:F2}", stockremain.ToString());
                     ViewState["Products"] = dt;
                     this.BindGrid();
 
@@ -89,7 +89,13 @@ namespace SuperShopManagement.UI
 
                 ;
             }
-
+            searchTextBox.Text=String.Empty;
+            productIdTextBox.Text=String.Empty;
+            productQtyTextBox.Text=String.Empty;
+            productPriceTextBox.Text=String.Empty;
+            productSellQtyTextBox.Text=String.Empty;
+            searchTextBox.Focus();
+            GridView1.Visible = true;
         }
 
         [WebMethod]
@@ -126,8 +132,8 @@ namespace SuperShopManagement.UI
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
 
-                    int productSellqty = int.Parse(GridView1.Rows[i].Cells[3].Text);
-                    int productRemainQty = int.Parse(GridView1.Rows[i].Cells[5].Text);
+                    decimal productSellqty = decimal.Parse(GridView1.Rows[i].Cells[3].Text);
+                    decimal productRemainQty = decimal.Parse(GridView1.Rows[i].Cells[5].Text);
                     DateTime sellDate = DateTime.Now;
                     int productId = int.Parse(GridView1.Rows[i].Cells[0].Text);
                     string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
@@ -153,8 +159,9 @@ namespace SuperShopManagement.UI
                     productQtyTextBox.Text = "";
                     productSellQtyTextBox.Text = "";
                 }
-
-                Response.Redirect("productsell.aspx");
+                
+                
+                Response.Redirect("productSell.aspx");
             }
             catch (Exception)
             {
@@ -165,7 +172,7 @@ namespace SuperShopManagement.UI
 
 
 
-        }
+}
 
         string productSellPrice = "";
 
@@ -194,6 +201,7 @@ namespace SuperShopManagement.UI
             productIdTextBox.Text = productId;
             productQtyTextBox.Text = productQty;
             productPriceTextBox.Text = productSellPrice;
+            productSellQtyTextBox.Focus();
         }
 
         decimal tot = 0;
@@ -229,6 +237,40 @@ namespace SuperShopManagement.UI
                 moremoneyLabel.Text = "Need more " + (Convert.ToDecimal(ViewState["totamut"])- Convert.ToDecimal(givenAmountTextBox.Text)).ToString()+" TK.";
             }
 
+        }
+
+        protected void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            //searchTextBox.Text = string.Empty;
+            //string productName = Request.Form[searchTextBox.UniqueID];
+            string productId = Request.Form[ProductId.UniqueID];
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
+            string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
+            SqlConnection conn = new SqlConnection(sqlconn);
+            SqlCommand cmd =
+                new SqlCommand("SELECT ProductQty,ProductSellPrice FROM Product where ProductId='" + productId + "'",
+                    conn);
+            SqlDataReader reader = null;
+            conn.Open();
+            reader = cmd.ExecuteReader();
+            string productQty = "";
+
+            while (reader.Read())
+            {
+                productQty = reader["ProductQty"].ToString();
+                productSellPrice = reader["ProductSellPrice"].ToString();
+            }
+            conn.Close();
+            productIdTextBox.Text = productId;
+            productQtyTextBox.Text = productQty;
+            productPriceTextBox.Text = productSellPrice;
+            productSellQtyTextBox.Focus();
+            //searchButton.Focus();
+        }
+
+        protected void productSellQtyTextBox_TextChanged(object sender, EventArgs e)
+        {
+            btnAdd.Focus();
         }
     }
 }

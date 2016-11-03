@@ -30,6 +30,7 @@
             float: right;
             background-color: peachpuff;
             color: blue;
+            
         }
         .btn:hover {
             background-color: sandybrown;
@@ -107,7 +108,7 @@
                 </td>
                 <td>
                     
-                    <asp:TextBox ID="searchTextBox" runat="server" Height="26px" />
+                    <asp:TextBox ID="searchTextBox" runat="server" Height="26px" ClientIDMode="Static" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged" />
                     <asp:HiddenField ID="ProductId" runat="server" />
                     
 
@@ -116,7 +117,8 @@
                 
                 <td>
                    
-                     <asp:Button ID="searchButton" CssClass="btn" Text="Search" runat="server" CausesValidation="False" OnClick="searchButton_Click" AutoPostBack="True" Height="30px" Width="70px"  />
+                     
+
                
                      </td>
                 <td>
@@ -170,7 +172,7 @@
                     Product Sell Qty:
                 </td>
                 <td>
-                    <asp:TextBox ID="productSellQtyTextBox" runat="server" Height="26px"></asp:TextBox>
+                    <asp:TextBox ID="productSellQtyTextBox" runat="server" Height="26px" OnTextChanged="productSellQtyTextBox_TextChanged"></asp:TextBox>
 
                 </td>
                 <td>
@@ -224,7 +226,7 @@ EmptyDataText="No records has been added.">
 </Columns>
 </asp:GridView>
                 <br/>
-        <asp:Button ID="sellButton" CssClass="sellbtn" runat="server" Text="Sell" Width="101px" OnClick="sellButton_Click" Height="33px" /> 
+        <asp:Button ID="sellButton" CssClass="sellbtn" runat="server" Text="Sell" Width="101px" OnClick="sellButton_Click" Height="33px" CausesValidation="False" /> 
         <asp:Label ID="sellStatus" runat="server" Text=""></asp:Label>
 
         <div class="rettk">
@@ -256,7 +258,7 @@ EmptyDataText="No records has been added.">
                     
                 </td>
                 <td align="left">
-        <asp:Button ID="returnButton" runat="server" Text="Return" OnClick="returnButton_Click" BackColor="#FF9999" Height="40px" Width="99px" />
+        <asp:Button ID="returnButton" runat="server" Text="Return" OnClick="returnButton_Click" BackColor="#FF9999" Height="40px" Width="99px" CausesValidation="False"/>
                     
                 </td>
 
@@ -272,6 +274,13 @@ EmptyDataText="No records has been added.">
                 
     </div>
         <script>
-        $("#prodsellmenu").addClass("active");
-    </script>  
+            $("#prodsellmenu").addClass("active");
+        </script>  
+    <script type="text/javascript">
+        $("#searchTextBox").keyup(function (event) {
+            if (event.keyCode == 13) {
+                $("#searchButton").click();
+            }
+        });
+    </script>
 </asp:Content>
