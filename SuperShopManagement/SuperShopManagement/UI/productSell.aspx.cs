@@ -63,14 +63,16 @@ namespace SuperShopManagement.UI
                         break;
                     }
                 }
-                decimal totalPrice = Convert.ToDecimal(productSellQtyTextBox.Text)*
-                                    Convert.ToDecimal(productPriceTextBox.Text);
+                decimal totalPrice = Convert.ToDecimal(productSellQtyTextBox.Text)*Convert.ToDecimal(productPriceTextBox.Text);
+                decimal sellqty = Convert.ToDecimal(productSellQtyTextBox.Text.Trim());
                 decimal stockremain = Convert.ToDecimal(productQtyTextBox.Text) - Convert.ToDecimal(productSellQtyTextBox.Text);
+
+                
                 if (stockremain >= 0)
                 {
                     maxSellLabel.Visible = false;
                     dt.Rows.Add(productIdTextBox.Text.Trim(), searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(),
-                        productSellQtyTextBox.Text.Trim(), $"{totalPrice:F2}", stockremain.ToString());
+                       sellqty.ToString("N3") , totalPrice.ToString("N2"), stockremain.ToString("N3"));
                     ViewState["Products"] = dt;
                     this.BindGrid();
 
