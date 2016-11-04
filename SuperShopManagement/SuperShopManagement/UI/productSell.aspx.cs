@@ -237,11 +237,11 @@ namespace SuperShopManagement.UI
             decimal retk = Convert.ToDecimal(givenAmountTextBox.Text) - Convert.ToDecimal(ViewState["totamut"]);
 
 
-            returnTextBox.Text = retk.ToString();
+            returnTextBox.Text = retk.ToString("N2");
             if (retk < 0)
             {
                 
-                moremoneyLabel.Text = "Need more " + (Convert.ToDecimal(ViewState["totamut"])- Convert.ToDecimal(givenAmountTextBox.Text)).ToString()+" TK.";
+                moremoneyLabel.Text = "Need more " + (Convert.ToDecimal(ViewState["totamut"])- Convert.ToDecimal(givenAmountTextBox.Text)).ToString("N2")+" TK.";
             }
 
         }
