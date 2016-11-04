@@ -60,6 +60,27 @@
     <script src="../SearchAutoComplete/jquery-1.10.0.min.js"></script>
     <script src="../SearchAutoComplete/jquery-ui.min.js"></script>
     <link href="../SearchAutoComplete/jquery-ui.css" rel="stylesheet" />
+    <%--<script>
+        $(function () {
+            $('#txtCategoryName').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../WebService/CheckExistingCategory.asmx/CheckCategory",
+                        data: "{'categoryName': '" + request.term + "'}",
+                        type: "POST",
+                        dataType: "Json",
+                        contentType: "application/json;charset=utf-8",
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (result) {
+                            alert('Not Match');
+                        }
+                    });
+                }
+            });
+        });
+    </script>--%>
     <script type="text/javascript">
         $(function () {
             $("[id$=searchTextBox]").autocomplete({
@@ -71,12 +92,13 @@
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
                         success: function (data) {
-                            response($.map(data.d, function (item) {
-                                return {
-                                    label: item.split('-')[0],
-                                    val: item.split('-')[1]
-                                }
-                            }))
+                            response($.map(data.d,
+                                function(item) {
+                                    return {
+                                        label: item.split('-')[0],
+                                        val: item.split('-')[1]
+                                    }
+                                }))
                         },
                         error: function (response) {
                             alert(response.responseText);

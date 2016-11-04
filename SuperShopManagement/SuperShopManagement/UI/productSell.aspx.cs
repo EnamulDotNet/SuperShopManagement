@@ -106,6 +106,7 @@ namespace SuperShopManagement.UI
         }
 
         [WebMethod]
+
         public static string[] GetProductNames(string prefix)
         {
             List<string> products = new List<string>();

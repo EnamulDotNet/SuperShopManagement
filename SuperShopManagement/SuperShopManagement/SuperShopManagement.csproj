@@ -112,6 +112,9 @@
     <Content Include="UI\productSell.aspx" />
     <Content Include="UI\sellReport.aspx" />
     <Content Include="MasterPageLogin.Master" />
+    <Content Include="UI\wser.asmx" />
+    <Content Include="WebService\SuperShopWebService.asmx" />
+    <Content Include="ws.asmx" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="design\css\bootstrap.min.css" />
     <Content Include="design\css\font-awesome.css" />
@@ -254,6 +257,18 @@
     </Compile>
     <Compile Include="UI\sellReport.aspx.designer.cs">
       <DependentUpon>sellReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\wser.asmx.cs">
+      <DependentUpon>wser.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebService\SuperShopWebService.asmx.cs">
+      <DependentUpon>SuperShopWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ws.asmx.cs">
+      <DependentUpon>ws.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup />
