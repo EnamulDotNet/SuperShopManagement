@@ -278,9 +278,9 @@ EmptyDataText="No records has been added.">
             $("#prodsellmenu").addClass("active");
         </script>  
     <script type="text/javascript">
-        $("#searchTextBox").keyup(function (event) {
-            if (event.keyCode == 13) {
-                $("#searchButton").click();
+        $("#searchTextBox").keypress(function (event) {
+            if (event.keyCode === 13) {
+                $('#searchButton').click();
             }
         });
     </script>
