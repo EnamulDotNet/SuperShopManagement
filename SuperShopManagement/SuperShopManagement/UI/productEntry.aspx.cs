@@ -18,10 +18,10 @@ namespace SuperShopManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Sid"] == null)
-            {
-                Response.Redirect("login.aspx");
-            }
+            //if (Session["Sid"] == null)
+            //{
+            //    Response.Redirect("login.aspx");
+            //}
             if (!IsPostBack)
             {
                 string constr = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ConnectionString;
@@ -94,9 +94,9 @@ namespace SuperShopManagement.UI
             bool saveProduct = productManager.CheckSaveProducts(product);
             if (saveProduct)
             {
+                ClearInputs(Page.Controls);
                 saveProductLabel.ForeColor = Color.Green;
                 saveProductLabel.Text = "Save Successfully";
-                ClearAllControls();
             }
             else
             {
@@ -109,50 +109,68 @@ namespace SuperShopManagement.UI
 
         protected void resetButton_Click(object sender, EventArgs e)
         {
-                ClearAllControls();
-               
+            ClearInputs(Page.Controls);
         }
-
-        protected void ClearAllControls()
+        
+        void ClearInputs(ControlCollection ctrls)
         {
-               
-                if (Master != null)
-                foreach (Control c in Master.FindControl("body").Controls)
+            foreach (Control ctrl in ctrls)
+            {
+                if (ctrl.GetType() == typeof(TextBox))
                 {
-                    
-                  
-                    if ((c as TextBox) != null)
-                    {
-                        ((TextBox)c).Text = String.Empty;
-                    }
-                    //else if ((c as Label) != null)
-                    //{
-                    //    ((Label)c).Text = String.Empty;
-                    //}
-                    else if ((c as DropDownList) != null)
-                    {
-                        ((DropDownList)c).SelectedIndex = 0;
-                    }
-                    //else if ((c as RadioButton) != null)
-                    //{
-                    //    ((RadioButton)c).Checked = false;
-                    //}
-                    //else if ((c as RadioButtonList) != null)
-                    //{
-                    //    ((RadioButtonList)c).ClearSelection();
-                    //}
-                    //else if ((c as CheckBox) != null)
-                    //{
-                    //    ((CheckBox)c).Checked = false;
-                    //}
-                    //else if ((c as CheckBoxList) != null)
-                    //{
-                    //    ((CheckBoxList)c).ClearSelection();
-                    //}
-
+                    ((TextBox)ctrl).Text = String.Empty;
                 }
-           
 
+                else if (ctrl.GetType() == typeof(Label))
+                {
+                    ((Label)(ctrl)).Text = string.Empty;
+                }
+                else if (ctrl.GetType() == typeof(DropDownList))
+                {
+                    ((DropDownList)(ctrl)).SelectedIndex = 0;
+                }
+                else if (ctrl.GetType() == typeof(CheckBox))
+                {
+                    ((CheckBox)(ctrl)).Checked = false;
+                }
+                else if (ctrl.GetType() == typeof(CheckBoxList))
+                {
+                    ((CheckBoxList)(ctrl)).ClearSelection();
+                }
+                else if (ctrl.GetType() == typeof(RadioButton))
+                {
+                    ((RadioButton)(ctrl)).Checked = false;
+                }
+                else if (ctrl.GetType() == typeof(RadioButtonList))
+                {
+                    ((RadioButtonList)(ctrl)).ClearSelection();
+                }
+               
+                 ClearInputs(ctrl.Controls);
+              
+            }
+        }
+        
+
+        protected void OnChangeItem(object sender, EventArgs e)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ConnectionString;
+            SqlConnection conn = new SqlConnection(constr);
+            int meaId = Convert.ToInt32(catagoryDropdown.SelectedValue);
+            
+            SqlCommand cmd = new SqlCommand("SELECT M.MeasurementName FROM MeasurementUnit M INNER JOIN Catagory C ON M.MeasurementId=C.MeasurementId WHERE C.CatagoryId='"+meaId+"' ", conn);
+
+            conn.Open();
+            
+            SqlDataReader rdr = cmd.ExecuteReader();
+            string unitName = "";
+            while (rdr.Read())
+            {
+                unitName = rdr["MeasurementName"].ToString();
+            }
+            rdr.Close();
+            conn.Close();
+            lblQtyUnit.Text = unitName;
         }
     }
 }

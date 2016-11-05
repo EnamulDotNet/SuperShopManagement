@@ -73,10 +73,15 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
     
+    
     <div class="productentry" id="formt">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            
+                 <ContentTemplate>
          <fieldset>
             <legend>Product Entry</legend>
-        
+             
                 <table class="">
                     <tr>
                         <td>
@@ -92,7 +97,8 @@
                             Catagory 
                         </td>
                         <td class="auto-style1">
-                            <asp:DropDownList ID="catagoryDropdown"  runat="server" Height="30px" Width="205px"></asp:DropDownList>
+                            
+                            <asp:DropDownList ID="catagoryDropdown"  runat="server" Height="30px" Width="205px" AutoPostBack="True" OnSelectedIndexChanged="OnChangeItem"></asp:DropDownList>
                 
                 
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="catagoryDropdown" ErrorMessage="Required!" ForeColor="Red" Display="Dynamic" InitialValue="0"></asp:RequiredFieldValidator>
@@ -106,8 +112,10 @@
                             Description: 
                         </td>
                         <td class="auto-style1">
+                           
                             <asp:TextBox ID="productDescriptionTextBox" runat="server" TextMode="MultiLine" Width="200px" Height="47px" Placeholder="(Optional)"></asp:TextBox>
-                        </td>
+                       
+                                 </td>
                     </tr>
                     <tr>
                         <td>
@@ -132,6 +140,11 @@
                         <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Positive value only!" ControlToValidate="productQtyTextBox" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" ForeColor="Red"></asp:CompareValidator>
 
 
+                        </td>
+                        <td>
+                            
+                            <asp:Label runat="server" ID="lblQtyUnit" Text="" ></asp:Label>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -168,6 +181,7 @@
 
                         </td>
                     </tr>
+                     
                     <tr>
                         <td>
                             
@@ -189,7 +203,11 @@
                     </tr>
 
                 </table>
+                    
             </fieldset>
+                     </ContentTemplate>
+            
+                 </asp:UpdatePanel>
     </div>
 
         <script>

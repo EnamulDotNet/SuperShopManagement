@@ -205,11 +205,27 @@ namespace SuperShopManagement.UI
                 productQty = reader["ProductQty"].ToString();
                 productSellPrice = reader["ProductSellPrice"].ToString();
             }
+
             conn.Close();
             productIdTextBox.Text = productId;
             productQtyTextBox.Text = productQty;
             productPriceTextBox.Text = productSellPrice;
             productSellQtyTextBox.Focus();
+
+            //SqlCommand cmdd = new SqlCommand("select m.MeasurementName from Product p inner join Catagory c on p.CatagoryId = c.CatagoryId inner join MeasurementUnit m on c.MeasurementId = m.MeasurementId where p.ProductId = '" + productId + "'", conn);
+
+            //conn.Open();
+
+            //SqlDataReader rdr = cmdd.ExecuteReader();
+            //string unitName = "";
+            //while (rdr.Read())
+            //{
+            //    unitName = rdr["MeasurementName"].ToString();
+            //}
+            //rdr.Close();
+            //conn.Close();
+            //lblsellqty.Text = unitName;
+
         }
 
         decimal tot = 0;

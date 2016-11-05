@@ -122,7 +122,11 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
     <div class="sellpage">
-        
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                
+           
         <table>
             <tr>
                 <td>
@@ -157,8 +161,7 @@
                 <td>
                     <asp:TextBox ID="productIdTextBox" runat="server" ReadOnly="True" BackColor="#E1E1E1" Height="26px"></asp:TextBox>
                
-                     </td>
-                <td>
+                    
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="productIdTextBox" ErrorMessage="Empty!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     
                 </td>
@@ -171,8 +174,7 @@
                 <td>
                     <asp:TextBox ID="productQtyTextBox" runat="server" ReadOnly="True" BackColor="#E1E1E1" Height="26px"></asp:TextBox>
                
-                     </td>
-                <td>
+                  
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="productQtyTextBox" ErrorMessage="Empty!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     
                 </td>
@@ -183,8 +185,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="productPriceTextBox" runat="server" ReadOnly="True" BackColor="#E1E1E1" Height="26px"></asp:TextBox>
-                </td>
-                <td>
+               
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="productPriceTextBox" ErrorMessage="Empty!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     
                 </td>
@@ -196,11 +197,13 @@
                 <td>
                     <asp:TextBox ID="productSellQtyTextBox" runat="server" Height="26px" OnTextChanged="productSellQtyTextBox_TextChanged"></asp:TextBox>
 
-                </td>
-                <td>
+                
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="productSellQtyTextBox" ErrorMessage="Required!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Positive value only!" ControlToValidate="productSellQtyTextBox" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" ForeColor="Red"></asp:CompareValidator>
                     
+                </td>
+                <td>
+                    <asp:Label runat="server" ID="lblsellqty" Text=""></asp:Label>
                 </td>
             </tr>
             
@@ -217,7 +220,8 @@
                      </td>
             </tr>
         </table>
-           
+            </ContentTemplate>
+        </asp:UpdatePanel>
         
 
         <br/>
@@ -293,6 +297,7 @@ EmptyDataText="No records has been added.">
                 </td>
             </tr>
         </table>
+
         </div>
                 
     </div>
