@@ -17,10 +17,10 @@ namespace SuperShopManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Sid"] == null)
-            {
-                Response.Redirect("login.aspx");
-            }
+            //if (Session["Sid"] == null)
+            //{
+            //    Response.Redirect("login.aspx");
+            //}
 
             if (!this.IsPostBack)
             {
@@ -107,7 +107,7 @@ namespace SuperShopManagement.UI
 
         [WebMethod]
 
-        public static string[] GetProductNames(string prefix)
+        public static List<string> GetProductNames(string prefix)
         {
             List<string> products = new List<string>();
             using (SqlConnection conn = new SqlConnection())
@@ -116,7 +116,7 @@ namespace SuperShopManagement.UI
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.CommandText =
-                        "select ProductName, ProductId from Product where ProductName like @SearchText + '%'";
+                        "select ProductName from Product where ProductName like @SearchText + '%'";
                     cmd.Parameters.AddWithValue("@SearchText", prefix);
                     cmd.Connection = conn;
                     conn.Open();
@@ -124,13 +124,13 @@ namespace SuperShopManagement.UI
                     {
                         while (sdr.Read())
                         {
-                            products.Add(string.Format("{0}-{1}", sdr["ProductName"], sdr["ProductId"]));
+                            products.Add(sdr["ProductName"].ToString());
                         }
                     }
                     conn.Close();
                 }
             }
-            return products.ToArray();
+            return products;
         }
 
         protected void sellButton_Click(object sender, EventArgs e)
@@ -183,34 +183,52 @@ namespace SuperShopManagement.UI
 }
 
         string productSellPrice = "";
-
         protected void searchButton_Click(object sender, EventArgs e)
         {
-            //searchTextBox.Text = string.Empty;
-            //string productName = Request.Form[searchTextBox.UniqueID];
-            string productId = Request.Form[ProductId.UniqueID];
-            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
             string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
             SqlConnection conn = new SqlConnection(sqlconn);
-            SqlCommand cmd =
-                new SqlCommand("SELECT ProductQty,ProductSellPrice FROM Product where ProductId='" + productId + "'",
-                    conn);
-            SqlDataReader reader = null;
-            conn.Open();
-            reader = cmd.ExecuteReader();
-            string productQty = "";
+            string proName = searchTextBox.Text;
 
+            SqlCommand cmd = new SqlCommand("select p.ProductId, p.ProductQty,p.ProductSellPrice, m.MeasurementName from Product p inner join Catagory c on p.CatagoryId = c.CatagoryId inner join MeasurementUnit m on c.MeasurementId = m.MeasurementId where p.ProductName = '"+proName+"'", conn);
+
+            conn.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            productIdTextBox.ForeColor = Color.Black;
             while (reader.Read())
             {
-                productQty = reader["ProductQty"].ToString();
-                productSellPrice = reader["ProductSellPrice"].ToString();
-            }
 
+                productIdTextBox.Text = reader["ProductId"].ToString();
+                productQtyTextBox.Text = reader["ProductQty"].ToString();
+                productPriceTextBox.Text = reader["ProductSellPrice"].ToString();
+                lblSellUnit.Text = reader["MeasurementName"].ToString();
+            }
+            reader.Close();
             conn.Close();
-            productIdTextBox.Text = productId;
-            productQtyTextBox.Text = productQty;
-            productPriceTextBox.Text = productSellPrice;
-            productSellQtyTextBox.Focus();
+            if (productIdTextBox.Text != String.Empty) return;
+            productIdTextBox.ForeColor = Color.DeepPink;
+            productIdTextBox.Text = "No product found!";
+
+
+            //SqlCommand cmd =
+            //    new SqlCommand("SELECT ProductQty,ProductSellPrice FROM Product where ProductId='" + productId + "'",
+            //        conn);
+            //SqlDataReader reader = null;
+            //conn.Open();
+            //reader = cmd.ExecuteReader();
+            //string productQty = "";
+
+            //while (reader.Read())
+            //{
+            //    productQty = reader["ProductQty"].ToString();
+            //    productSellPrice = reader["ProductSellPrice"].ToString();
+            //}
+
+            //conn.Close();
+            //productIdTextBox.Text = productId;
+            //productQtyTextBox.Text = productQty;
+            //productPriceTextBox.Text = productSellPrice;
+            //productSellQtyTextBox.Focus();
 
             //SqlCommand cmdd = new SqlCommand("select m.MeasurementName from Product p inner join Catagory c on p.CatagoryId = c.CatagoryId inner join MeasurementUnit m on c.MeasurementId = m.MeasurementId where p.ProductId = '" + productId + "'", conn);
 
@@ -227,6 +245,50 @@ namespace SuperShopManagement.UI
             //lblsellqty.Text = unitName;
 
         }
+        protected void searchButton1_Click(object sender, EventArgs e)
+        {
+            ////searchTextBox.Text = string.Empty;
+            ////string productName = Request.Form[searchTextBox.UniqueID];
+            //string productId = Request.Form[ProductId.UniqueID];
+            ////ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
+            //string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
+            //SqlConnection conn = new SqlConnection(sqlconn);
+            //SqlCommand cmd =
+            //    new SqlCommand("SELECT ProductQty,ProductSellPrice FROM Product where ProductId='" + productId + "'",
+            //        conn);
+            //SqlDataReader reader = null;
+            //conn.Open();
+            //reader = cmd.ExecuteReader();
+            //string productQty = "";
+
+            //while (reader.Read())
+            //{
+            //    productQty = reader["ProductQty"].ToString();
+            //    productSellPrice = reader["ProductSellPrice"].ToString();
+            //}
+
+            //conn.Close();
+            //productIdTextBox.Text = productId;
+            //productQtyTextBox.Text = productQty;
+            //productPriceTextBox.Text = productSellPrice;
+            //productSellQtyTextBox.Focus();
+
+            ////SqlCommand cmdd = new SqlCommand("select m.MeasurementName from Product p inner join Catagory c on p.CatagoryId = c.CatagoryId inner join MeasurementUnit m on c.MeasurementId = m.MeasurementId where p.ProductId = '" + productId + "'", conn);
+
+            ////conn.Open();
+
+            ////SqlDataReader rdr = cmdd.ExecuteReader();
+            ////string unitName = "";
+            ////while (rdr.Read())
+            ////{
+            ////    unitName = rdr["MeasurementName"].ToString();
+            ////}
+            ////rdr.Close();
+            ////conn.Close();
+            ////lblsellqty.Text = unitName;
+
+        }
+
 
         decimal tot = 0;
 
@@ -241,7 +303,7 @@ namespace SuperShopManagement.UI
                 e.Row.Cells[3].Text = "Grand Total";
                 e.Row.Cells[3].Font.Bold = true;
 
-                e.Row.Cells[4].Text = tot.ToString();
+                e.Row.Cells[4].Text = tot.ToString("N2");
                 e.Row.Cells[4].Font.Bold = true;
                 e.Row.Cells[4].ForeColor = Color.DeepPink;
             }
@@ -265,30 +327,30 @@ namespace SuperShopManagement.UI
 
         protected void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-            //searchTextBox.Text = string.Empty;
-            //string productName = Request.Form[searchTextBox.UniqueID];
-            string productId = Request.Form[ProductId.UniqueID];
-            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
-            string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
-            SqlConnection conn = new SqlConnection(sqlconn);
-            SqlCommand cmd =
-                new SqlCommand("SELECT ProductQty,ProductSellPrice FROM Product where ProductId='" + productId + "'",
-                    conn);
-            SqlDataReader reader = null;
-            conn.Open();
-            reader = cmd.ExecuteReader();
-            string productQty = "";
+            ////searchTextBox.Text = string.Empty;
+            ////string productName = Request.Form[searchTextBox.UniqueID];
+            //string productId = Request.Form[ProductId.UniqueID];
+            ////ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
+            //string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
+            //SqlConnection conn = new SqlConnection(sqlconn);
+            //SqlCommand cmd =
+            //    new SqlCommand("SELECT ProductQty,ProductSellPrice FROM Product where ProductId='" + productId + "'",
+            //        conn);
+            //SqlDataReader reader = null;
+            //conn.Open();
+            //reader = cmd.ExecuteReader();
+            //string productQty = "";
 
-            while (reader.Read())
-            {
-                productQty = reader["ProductQty"].ToString();
-                productSellPrice = reader["ProductSellPrice"].ToString();
-            }
-            conn.Close();
-            productIdTextBox.Text = productId;
-            productQtyTextBox.Text = productQty;
-            productPriceTextBox.Text = productSellPrice;
-            productSellQtyTextBox.Focus();
+            //while (reader.Read())
+            //{
+            //    productQty = reader["ProductQty"].ToString();
+            //    productSellPrice = reader["ProductSellPrice"].ToString();
+            //}
+            //conn.Close();
+            //productIdTextBox.Text = productId;
+            //productQtyTextBox.Text = productQty;
+            //productPriceTextBox.Text = productSellPrice;
+            //productSellQtyTextBox.Focus();
             //searchButton.Focus();
         }
 

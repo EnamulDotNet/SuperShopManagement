@@ -40,15 +40,6 @@ namespace SuperShopManagement.UI {
         protected global::System.Web.UI.WebControls.TextBox searchTextBox;
         
         /// <summary>
-        /// ProductId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField ProductId;
-        
-        /// <summary>
         /// searchButton control.
         /// </summary>
         /// <remarks>
@@ -103,13 +94,13 @@ namespace SuperShopManagement.UI {
         protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
         
         /// <summary>
-        /// lblsellqty control.
+        /// lblSellUnit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblsellqty;
+        protected global::System.Web.UI.WebControls.Label lblSellUnit;
         
         /// <summary>
         /// btnAdd control.

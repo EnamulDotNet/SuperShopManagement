@@ -4,7 +4,7 @@
     Product Sell
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <script src="../Scripts/jquery-3.1.1.min.js"></script>
+
      <style type="text/css">
         .sellpage {
             
@@ -23,11 +23,11 @@
         
         td{
             padding: 6px;
-            text-align: center;
+            
             
         }
         .btn {
-            float: right;
+            float: left;
             background-color: peachpuff;
             color: blue;
             
@@ -57,65 +57,37 @@
        
          </style>
     <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../SearchAutoComplete/jquery-1.10.0.min.js"></script>
-    <script src="../SearchAutoComplete/jquery-ui.min.js"></script>
-    <link href="../SearchAutoComplete/jquery-ui.css" rel="stylesheet" />
-    <%--<script>
-        $(function () {
-            $('#txtCategoryName').autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: "../WebService/CheckExistingCategory.asmx/CheckCategory",
-                        data: "{'categoryName': '" + request.term + "'}",
-                        type: "POST",
-                        dataType: "Json",
-                        contentType: "application/json;charset=utf-8",
-                        success: function (data) {
-                            response(data.d);
-                        },
-                        error: function (result) {
-                            alert('Not Match');
-                        }
-                    });
-                }
-            });
-        });
-    </script>--%>
-    <script type="text/javascript">
-        $(function () {
-            $("[id$=searchTextBox]").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: '<%=ResolveUrl("productSell.aspx/GetProductNames") %>',
-                        data: "{ 'prefix': '" + request.term + "'}",
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {
-                            response($.map(data.d,
-                                function(item) {
-                                    return {
-                                        label: item.split('-')[0],
-                                        val: item.split('-')[1]
-                                    }
-                                }))
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                },
-                select: function (e, i) {
-                    $("[id$=ProductId]").val(i.item.val);
-                },
-                minLength: 1
-            });
-        });  
-    </script>
-    
+    <script src="../AutoComplete/jquery.js"></script>
+    <script src="../AutoComplete/jquery-ui.js"></script>
+    <link href="../AutoComplete/jquery-ui.css" rel="stylesheet" />
+
+ <script type="text/javascript">
+     $(function () {
+         $('#searchTextBox').autocomplete({
+             source: function (request, response) {
+                 $.ajax({
+                     url: "../ui/productSell.aspx/GetProductNames",
+                     
+                     data: "{'prefix': '" + request.term + "'}",
+                     type: "POST",
+                     dataType: "Json",
+                     contentType: "application/json;charset=utf-8",
+                     success: function (data) {
+                         response(data.d);
+                     },
+                     error: function () {
+                         alert('url error!');
+                     }
+                 }); 
+             }
+             
+         });
+         
+     });
+
+</script>
+
+   
 
    
 </asp:Content>
@@ -134,15 +106,9 @@
                 </td>
                 <td>
                     
-                    <asp:TextBox ID="searchTextBox" runat="server" Height="26px" ClientIDMode="Static" AutoPostBack="True" OnTextChanged="searchTextBox_TextChanged" />
-                    <asp:HiddenField ID="ProductId" runat="server" />
+                    <asp:TextBox ID="searchTextBox" ClientIDMode="Static" runat="server" Height="26px"/>
+                    <%--<asp:HiddenField ID="ProductId" runat="server" />--%>
                     
-
-                
-                </td>
-                
-                <td>
-                   
                     <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="searchButton_Click" CausesValidation="False" Height="35px" Width="67px" CssClass="searbtn"/>
 
                
@@ -201,16 +167,14 @@
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="productSellQtyTextBox" ErrorMessage="Required!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Positive value only!" ControlToValidate="productSellQtyTextBox" Type="Double" ValueToCompare="0" Operator="GreaterThan" Display="Dynamic" ForeColor="Red"></asp:CompareValidator>
                     
-                </td>
-                <td>
-                    <asp:Label runat="server" ID="lblsellqty" Text=""></asp:Label>
+               
+                    <asp:Label runat="server" ID="lblSellUnit" Text=""></asp:Label>
                 </td>
             </tr>
             
             <tr>
-                <td>
-                    
-                </td>
+               <td></td>
+                
                 <td>
                     <asp:Button ID="btnAdd" CssClass="btn" runat="server" Text="Add" OnClick="btnAdd_Click" Height="33px" Width="71px" />
                     <br />
