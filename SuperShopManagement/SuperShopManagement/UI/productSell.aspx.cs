@@ -245,49 +245,7 @@ namespace SuperShopManagement.UI
             //lblsellqty.Text = unitName;
 
         }
-        protected void searchButton1_Click(object sender, EventArgs e)
-        {
-            ////searchTextBox.Text = string.Empty;
-            ////string productName = Request.Form[searchTextBox.UniqueID];
-            //string productId = Request.Form[ProductId.UniqueID];
-            ////ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Product Name: " + productName + "\\nProduct ID: " + productId + "');", true);
-            //string sqlconn = ConfigurationManager.ConnectionStrings["SuperShopDbConnection"].ToString();
-            //SqlConnection conn = new SqlConnection(sqlconn);
-            //SqlCommand cmd =
-            //    new SqlCommand("SELECT ProductQty,ProductSellPrice FROM Product where ProductId='" + productId + "'",
-            //        conn);
-            //SqlDataReader reader = null;
-            //conn.Open();
-            //reader = cmd.ExecuteReader();
-            //string productQty = "";
-
-            //while (reader.Read())
-            //{
-            //    productQty = reader["ProductQty"].ToString();
-            //    productSellPrice = reader["ProductSellPrice"].ToString();
-            //}
-
-            //conn.Close();
-            //productIdTextBox.Text = productId;
-            //productQtyTextBox.Text = productQty;
-            //productPriceTextBox.Text = productSellPrice;
-            //productSellQtyTextBox.Focus();
-
-            ////SqlCommand cmdd = new SqlCommand("select m.MeasurementName from Product p inner join Catagory c on p.CatagoryId = c.CatagoryId inner join MeasurementUnit m on c.MeasurementId = m.MeasurementId where p.ProductId = '" + productId + "'", conn);
-
-            ////conn.Open();
-
-            ////SqlDataReader rdr = cmdd.ExecuteReader();
-            ////string unitName = "";
-            ////while (rdr.Read())
-            ////{
-            ////    unitName = rdr["MeasurementName"].ToString();
-            ////}
-            ////rdr.Close();
-            ////conn.Close();
-            ////lblsellqty.Text = unitName;
-
-        }
+       
 
 
         decimal tot = 0;

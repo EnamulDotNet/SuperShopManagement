@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <script src="../Scripts/jquery-3.1.1.min.js"></script>
+   
     <style type="text/css">
         .productentry {
             
@@ -33,43 +33,35 @@
         
        
          </style>
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../SearchAutoComplete/jquery-1.10.0.min.js"></script>
-    <script src="../SearchAutoComplete/jquery-ui.min.js"></script>
-    <link href="../SearchAutoComplete/jquery-ui.css" rel="stylesheet" />
-    <script type="text/javascript">
-        $(function () {
-            $("[id$=productNameTextBox]").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: '<%=ResolveUrl("productsell.aspx/GetProductNames") %>',
-                        data: "{ 'prefix': '" + request.term + "'}",
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {
-                            response($.map(data.d, function (item) {
-                                return {
-                                    label: item.split('-')[0],
-                                    val: item.split('-')[1]
-                                }
-                            }))
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                },
-                select: function (e, i) {
-                    $("[id$=ProductId]").val(i.item.val);
-                },
-                minLength: 1
-            });
-        });  
-    </script>
+    <script src="../AutoComplete/jquery.js"></script>
+    <script src="../AutoComplete/jquery-ui.js"></script>
+    <link href="../AutoComplete/jquery-ui.css" rel="stylesheet" />
+
+ <script type="text/javascript">
+     $(function () {
+         $('#productNameTextBox').autocomplete({
+             source: function (request, response) {
+                 $.ajax({
+                     url: "../ui/productSell.aspx/GetProductNames",
+                     
+                     data: "{'prefix': '" + request.term + "'}",
+                     type: "POST",
+                     dataType: "Json",
+                     contentType: "application/json;charset=utf-8",
+                     success: function (data) {
+                         response(data.d);
+                     },
+                     error: function () {
+                         alert('url error!');
+                     }
+                 }); 
+             }
+             
+         });
+         
+     });
+
+</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
     
@@ -88,7 +80,7 @@
                             Name 
                         </td>
                         <td class="auto-style1">
-                            <asp:TextBox ID="productNameTextBox"  runat="server" Width="200px" Height="26px"></asp:TextBox>
+                            <asp:TextBox ID="productNameTextBox" ClientIDMode="Static" runat="server" Width="200px" Height="26px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="productNameTextBox" ErrorMessage="Required!" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                         </td>
                     </tr>

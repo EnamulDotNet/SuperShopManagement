@@ -4,7 +4,7 @@
     Product Sell
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-
+    
      <style type="text/css">
         .sellpage {
             
@@ -56,14 +56,13 @@
         }
        
          </style>
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../AutoComplete/jquery.js"></script>
+     <script src="../AutoComplete/jquery.js"></script>
     <script src="../AutoComplete/jquery-ui.js"></script>
     <link href="../AutoComplete/jquery-ui.css" rel="stylesheet" />
 
  <script type="text/javascript">
-     $(function () {
-         $('#searchTextBox').autocomplete({
+     function jScript() {
+         $("#searchTextBox").autocomplete({
              source: function (request, response) {
                  $.ajax({
                      url: "../ui/productSell.aspx/GetProductNames",
@@ -76,16 +75,18 @@
                          response(data.d);
                      },
                      error: function () {
-                         alert('url error!');
+                         alert("url error!");
                      }
                  }); 
              }
              
          });
          
-     });
+     }
 
 </script>
+
+ 
 
    
 
@@ -97,7 +98,9 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                
+               <script type="text/javascript">
+                Sys.Application.add_load(jScript);
+            </script> 
            
         <table>
             <tr>
@@ -107,7 +110,7 @@
                 <td>
                     
                     <asp:TextBox ID="searchTextBox" ClientIDMode="Static" runat="server" Height="26px"/>
-                    <%--<asp:HiddenField ID="ProductId" runat="server" />--%>
+                    
                     
                     <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="searchButton_Click" CausesValidation="False" Height="35px" Width="67px" CssClass="searbtn"/>
 
@@ -265,14 +268,16 @@ EmptyDataText="No records has been added.">
         </div>
                 
     </div>
+    
         <script>
             $("#prodsellmenu").addClass("active");
         </script>  
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         $("#searchTextBox").keypress(function (event) {
             if (event.keyCode === 13) {
                 $('#searchButton').click();
             }
         });
-    </script>
+    </script>--%>
+
 </asp:Content>
