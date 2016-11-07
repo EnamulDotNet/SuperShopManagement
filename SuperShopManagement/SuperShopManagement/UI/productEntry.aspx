@@ -38,12 +38,12 @@
     <link href="../AutoComplete/jquery-ui.css" rel="stylesheet" />
 
  <script type="text/javascript">
-     $(function () {
-         $('#productNameTextBox').autocomplete({
+     function jScript() {
+         $("#productNameTextBox").autocomplete({
              source: function (request, response) {
                  $.ajax({
                      url: "../ui/productSell.aspx/GetProductNames",
-                     
+
                      data: "{'prefix': '" + request.term + "'}",
                      type: "POST",
                      dataType: "Json",
@@ -52,14 +52,14 @@
                          response(data.d);
                      },
                      error: function () {
-                         alert('url error!');
+                         alert("url error!");
                      }
-                 }); 
+                 });
              }
-             
+
          });
-         
-     });
+
+     }
 
 </script>
 </asp:Content>
@@ -71,6 +71,11 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             
                  <ContentTemplate>
+                     <script type="text/javascript">
+                Sys.Application.add_load(jScript);
+            </script> 
+                     
+
          <fieldset>
             <legend>Product Entry</legend>
              

@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿function fnName() {
     $("#TextBoxId").autocomplete({
         source: function (request, response) {
             $.ajax({
@@ -19,4 +19,4 @@
 
     });
 
-});
+}
