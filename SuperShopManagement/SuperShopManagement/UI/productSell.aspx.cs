@@ -17,10 +17,10 @@ namespace SuperShopManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Sid"] == null)
-            //{
-            //    Response.Redirect("login.aspx");
-            //}
+            if (Session["Sid"] == null)
+            {
+                Response.Redirect("login.aspx");
+            }
 
             if (!this.IsPostBack)
             {
@@ -90,6 +90,7 @@ namespace SuperShopManagement.UI
                     productQtyTextBox.Text = String.Empty;
                     productPriceTextBox.Text = String.Empty;
                     productSellQtyTextBox.Text = String.Empty;
+                    lblSellUnit.Text=String.Empty;
                     searchTextBox.Focus();
                     
 
@@ -194,7 +195,7 @@ namespace SuperShopManagement.UI
             conn.Open();
 
             SqlDataReader reader = cmd.ExecuteReader();
-            productIdTextBox.ForeColor = Color.Black;
+            
             while (reader.Read())
             {
 
@@ -205,8 +206,8 @@ namespace SuperShopManagement.UI
             }
             reader.Close();
             conn.Close();
-            if (productIdTextBox.Text != String.Empty) return;
-            productIdTextBox.ForeColor = Color.DeepPink;
+            if (productIdTextBox.Text != string.Empty) return;
+            
             productIdTextBox.Text = "No product found!";
 
 
