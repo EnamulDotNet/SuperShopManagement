@@ -203,7 +203,9 @@
                     
             </fieldset>
                      </ContentTemplate>
-            
+            <triggers>
+                <asp:PostBackTrigger ControlID="saveButton"/>
+            </triggers>
                  </asp:UpdatePanel>
     </div>
 
