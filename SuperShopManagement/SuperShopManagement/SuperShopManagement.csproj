@@ -88,7 +88,9 @@
     <Content Include="images\a.jpg" />
     <Content Include="images\b8.png" />
     <Content Include="js\jquery-3.1.1.min.js" />
+    <Content Include="MoveCursorToEnd\jquery.caret.js" />
     <Content Include="js\main.js" />
+    <Content Include="MoveCursorToEnd\MoveCursorToEndEx.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

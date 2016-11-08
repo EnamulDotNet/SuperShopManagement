@@ -168,8 +168,8 @@ namespace SuperShopManagement.UI
                     productQtyTextBox.Text = "";
                     productSellQtyTextBox.Text = "";
                 }
-                
-                Session.Clear();
+
+                Session["Products"] = null;
                 Response.Redirect("productSell.aspx");
             }
             catch (Exception)
@@ -198,17 +198,31 @@ namespace SuperShopManagement.UI
             
             while (reader.Read())
             {
-
+                productIdTextBox.ForeColor = Color.Black;
                 productIdTextBox.Text = reader["ProductId"].ToString();
                 productQtyTextBox.Text = reader["ProductQty"].ToString();
                 productPriceTextBox.Text = reader["ProductSellPrice"].ToString();
                 lblSellUnit.Text = reader["MeasurementName"].ToString();
+                productSellQtyTextBox.Focus();
+
+                
             }
+            bool datafound = reader.HasRows;
             reader.Close();
             conn.Close();
-            if (productIdTextBox.Text != string.Empty) return;
+            if (!datafound)
+            {
+                productIdTextBox.ForeColor=Color.DeepPink;
+                productIdTextBox.Text = "No product found!";
+                productPriceTextBox.Text = "";
+                productQtyTextBox.Text = "";
+                productSellQtyTextBox.Text = "";
+                lblSellUnit.Text = "";
+                searchTextBox.Focus();
+                
+            }
             
-            productIdTextBox.Text = "No product found!";
+
 
 
 

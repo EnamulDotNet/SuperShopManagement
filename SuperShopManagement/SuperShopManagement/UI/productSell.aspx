@@ -59,7 +59,7 @@
      <script src="../AutoComplete/jquery.js"></script>
     <script src="../AutoComplete/jquery-ui.js"></script>
     <link href="../AutoComplete/jquery-ui.css" rel="stylesheet" />
-
+    <script src="../MoveCursorToEnd/jquery.caret.js"></script>
  <script type="text/javascript">
      function jScript() {
          $("#searchTextBox").autocomplete({
@@ -85,7 +85,13 @@
      }
 
 </script>
+<script type="text/javascript">
+        function CaretMove() {
+            //Set the caret position to end using caretToEnd method
+            $('#searchTextBox').caretToEnd();
 
+        }
+    </script>
  
 
    
@@ -100,6 +106,9 @@
             <ContentTemplate>
                <script type="text/javascript">
                 Sys.Application.add_load(jScript);
+            </script>
+                <script type="text/javascript">
+                    Sys.Application.add_load(CaretMove);
             </script> 
          
         <table>
