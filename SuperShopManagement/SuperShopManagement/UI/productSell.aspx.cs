@@ -30,7 +30,7 @@ namespace SuperShopManagement.UI
                     new DataColumn("ProductId"), new DataColumn("ProductName"), new DataColumn("ProductPrice"),
                     new DataColumn("ProductQty"), new DataColumn("ProductTotalPrice"), new DataColumn("ProductStockQty")
                 });
-                ViewState["Products"] = dt;
+                Session["Products"] = dt;
                 this.BindGrid();
 
                 
@@ -42,18 +42,18 @@ namespace SuperShopManagement.UI
         protected void BindGrid()
         {
             GridView1.Columns[5].Visible = true;
-            GridView1.DataSource = (DataTable) ViewState["Products"];
+            GridView1.DataSource = (DataTable)Session["Products"];
             GridView1.DataBind();
             GridView1.Columns[5].Visible = false;
         }
 
 
+
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-
             try
             {
-                DataTable dt = (DataTable) ViewState["Products"];
+                DataTable dt = (DataTable) Session["Products"];
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
                     string id = GridView1.Rows[i].Cells[0].Text;
@@ -72,7 +72,7 @@ namespace SuperShopManagement.UI
                     sellqtyLabel.Visible = true;
                     sellqtyLabel.Text = "Sell quantity error!";
 
-                    ViewState["Products"] = dt;
+                    Session["Products"] = dt;
                     this.BindGrid();
                     productSellQtyTextBox.Text = String.Empty;
                     productSellQtyTextBox.Focus();
@@ -83,7 +83,7 @@ namespace SuperShopManagement.UI
                    
                     dt.Rows.Add(productIdTextBox.Text.Trim(), searchTextBox.Text.Trim(), productPriceTextBox.Text.Trim(),
                        sellqty.ToString("N3") , totalPrice.ToString("N2"), stockremain.ToString("N3"));
-                    ViewState["Products"] = dt;
+                    Session["Products"] = dt;
                     this.BindGrid();
                     searchTextBox.Text = String.Empty;
                     productIdTextBox.Text = String.Empty;
@@ -168,7 +168,7 @@ namespace SuperShopManagement.UI
                     productSellQtyTextBox.Text = "";
                 }
                 
-                ViewState.Clear();
+                Session.Clear();
                 Response.Redirect("productSell.aspx");
             }
             catch (Exception)
@@ -232,20 +232,20 @@ namespace SuperShopManagement.UI
                 e.Row.Cells[4].Font.Bold = true;
                 e.Row.Cells[4].ForeColor = Color.DeepPink;
             }
-           ViewState["totamut"]=tot;
+           Session["totamut"]=tot;
 
         }
 
         protected void returnButton_Click(object sender, EventArgs e)
         {
-            decimal retk = Convert.ToDecimal(givenAmountTextBox.Text) - Convert.ToDecimal(ViewState["totamut"]);
+            decimal retk = Convert.ToDecimal(givenAmountTextBox.Text) - Convert.ToDecimal(Session["totamut"]);
 
 
             returnTextBox.Text = retk.ToString("N2");
             if (retk < 0)
             {
                 
-                moremoneyLabel.Text = "Need more " + (Convert.ToDecimal(ViewState["totamut"])- Convert.ToDecimal(givenAmountTextBox.Text)).ToString("N2")+" TK.";
+                moremoneyLabel.Text = "Need more " + (Convert.ToDecimal(Session["totamut"])- Convert.ToDecimal(givenAmountTextBox.Text)).ToString("N2")+" TK.";
             }
 
         }

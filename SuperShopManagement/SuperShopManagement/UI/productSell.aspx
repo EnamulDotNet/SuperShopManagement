@@ -96,12 +96,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
     <div class="sellpage">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
             <ContentTemplate>
                <script type="text/javascript">
                 Sys.Application.add_load(jScript);
             </script> 
-           
+         
         <table>
             <tr>
                 <td>
@@ -188,6 +188,9 @@
             </tr>
         </table>
             </ContentTemplate>
+            <Triggers>
+     <asp:PostBackTrigger  ControlID="btnAdd"/> 
+    </Triggers>
         </asp:UpdatePanel>
         
 
